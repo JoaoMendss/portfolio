@@ -12,7 +12,7 @@
     "name": "João Mendes",
     "role": "Full Stack Developer",
     "desc": "Building modern digital experiences — from pixel-perfect frontends to high-performance backends.",
-    "cta_primary": "View Projects",
+    "cta_primary": "Let's talk",
     "cta_secondary": "Get in Touch",
     "available": "Available for projects"
   },
@@ -122,8 +122,21 @@
       "error": "Error sending. Please try again."
     }
   },
+  "modal": {
+    "title": "Let's talk",
+    "subtitle": "Choose how you'd like to reach me",
+    "email_label": "Email",
+    "linkedin_label": "LinkedIn",
+    "form_label": "Message form",
+    "form_desc": "Send a detailed message",
+    "response": "I reply within 24h"
+  },
   "footer": {
-    "made": "Built with React + AI",
-    "rights": "All rights reserved"
+    "tagline": "Building modern digital experiences — from frontend to backend.",
+    "available": "Available for projects",
+    "nav_title": "Navigation",
+    "contact_title": "Contact",
+    "rights": "All rights reserved",
+    "location": "Telêmaco Borba, PR — Brazil"
   }
 }
