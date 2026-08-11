@@ -229,8 +229,8 @@ export default function Stack() {
             ))}
           </div>
 
-          {/* Spline 3D + speech bubble — só no desktop */}
-          <motion.div {...fadeUp(0.2)} className="hidden lg:block lg:sticky lg:top-24 h-[580px] relative">
+          {/* Spline 3D + speech bubble */}
+          <motion.div {...fadeUp(0.2)} className="lg:sticky lg:top-24 h-[340px] lg:h-[580px] relative">
             <RobotBubble
               key={isEn ? 'en' : 'pt'}
               isEn={isEn}
