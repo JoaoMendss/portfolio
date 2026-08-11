@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "about": "Sobre",
+    "services": "Serviços",
+    "stack": "Stack",
+    "projects": "Projetos",
+    "ai": "IA & Tools",
+    "contact": "Contato"
+  },
+  "hero": {
+    "greeting": "Olá, eu sou",
+    "name": "João Mendes",
+    "role": "Desenvolvedor Full Stack",
+    "desc": "Construo experiências digitais modernas — de interfaces pixel-perfect a backends de alta performance.",
+    "cta_primary": "Ver Projetos",
+    "cta_secondary": "Falar Comigo",
+    "available": "Disponível para projetos"
+  },
+  "about": {
+    "tag": "Sobre mim",
+    "title": "Quem sou eu",
+    "bio1": "Tenho 17 anos, sou de Telêmaco Borba, PR, e estou no 4º ano do Curso Técnico em Informática para Internet no IFPR.",
+    "bio2": "Trabalho com desenvolvimento Full Stack há mais de 2 anos, construindo desde landing pages até aplicações web completas. Sou apaixonado por tecnologia, performance e boas experiências de usuário.",
+    "bio3": "Integrei IA ao meu fluxo de trabalho diário — principalmente o Claude Code — o que me permite entregar projetos com mais qualidade e velocidade.",
+    "location": "Telêmaco Borba, PR — Brasil",
+    "education": "IFPR — Técnico em Informática",
+    "experience": "2+ anos de experiência",
+    "status": "Aberto para projetos"
+  },
+  "services": {
+    "tag": "O que eu faço",
+    "title": "Serviços",
+    "subtitle": "Soluções digitais completas para o seu negócio",
+    "items": {
+      "landing": {
+        "title": "Landing Pages",
+        "desc": "Páginas de alta conversão, responsivas e otimizadas para performance e SEO."
+      },
+      "webapp": {
+        "title": "Aplicações Web",
+        "desc": "Sistemas web completos com frontend moderno e backend robusto."
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "desc": "Lojas virtuais com carrinho, pagamentos e painel administrativo."
+      },
+      "api": {
+        "title": "APIs & Integrações",
+        "desc": "APIs RESTful, integrações com serviços externos e automações."
+      },
+      "ui": {
+        "title": "UI/UX Design",
+        "desc": "Interfaces modernas e intuitivas alinhadas à identidade da sua marca."
+      },
+      "maintenance": {
+        "title": "Manutenção & Suporte",
+        "desc": "Manutenção contínua, atualizações e suporte técnico para seus projetos."
+      }
+    }
+  },
+  "stack": {
+    "tag": "Tecnologias",
+    "title": "Minha Stack",
+    "subtitle": "Ferramentas que uso no dia a dia",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Banco de Dados",
+      "tools": "Ferramentas",
+      "ai": "IA & Dev Tools"
+    }
+  },
+  "projects": {
+    "tag": "Portfólio",
+    "title": "Projetos",
+    "subtitle": "Alguns dos meus trabalhos recentes",
+    "view": "Ver Projeto",
+    "github": "GitHub",
+    "status": {
+      "completed": "Concluído",
+      "concept": "Conceito",
+      "ongoing": "Em andamento",
+      "private": "Privado"
+    },
+    "type": {
+      "fullstack": "Full Stack",
+      "frontend": "Frontend",
+      "backend": "Backend"
+    }
+  },
+  "ai": {
+    "tag": "Diferencial",
+    "title": "IA & Ferramentas",
+    "subtitle": "Como a IA amplifica o meu trabalho",
+    "desc": "Integrei ferramentas de IA ao meu fluxo de desenvolvimento. Isso me permite entregar projetos mais complexos, com mais qualidade e em menos tempo.",
+    "tools_title": "Ferramentas que uso",
+    "advantage_title": "Minha vantagem",
+    "badge_title": "Desenvolvido com IA",
+    "badge_desc": "Este portfólio foi construído com auxílio do Claude Code — IA que acelera desenvolvimento sem abrir mão da qualidade.",
+    "advantages": [
+      "Entregas mais rápidas sem perder qualidade",
+      "Debugging e revisão de código assistidos por IA",
+      "Documentação e testes gerados automaticamente",
+      "Foco total na solução, não na repetição"
+    ]
+  },
+  "contact": {
+    "tag": "Vamos conversar",
+    "title": "Contato",
+    "subtitle": "Pronto para começar seu projeto?",
+    "desc": "Me manda uma mensagem e vamos conversar sobre como posso ajudar o seu negócio.",
+    "social": "Ou me encontre aqui",
+    "form": {
+      "name": "Seu nome",
+      "email": "Seu e-mail",
+      "message": "Mensagem",
+      "placeholder_message": "Conte sobre seu projeto...",
+      "send": "Enviar Mensagem",
+      "sending": "Enviando...",
+      "success_title": "Mensagem enviada!",
+      "success_desc": "Em breve entrarei em contato.",
+      "error": "Erro ao enviar. Tente novamente."
+    }
+  },
+  "footer": {
+    "made": "Feito com React + IA",
+    "rights": "Todos os direitos reservados"
+  }
+}

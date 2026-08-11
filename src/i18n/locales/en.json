@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "stack": "Stack",
+    "projects": "Projects",
+    "ai": "AI & Tools",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "João Mendes",
+    "role": "Full Stack Developer",
+    "desc": "Building modern digital experiences — from pixel-perfect frontends to high-performance backends.",
+    "cta_primary": "View Projects",
+    "cta_secondary": "Get in Touch",
+    "available": "Available for projects"
+  },
+  "about": {
+    "tag": "About me",
+    "title": "Who I am",
+    "bio1": "I'm 17 years old, from Telêmaco Borba, Brazil, currently in my 4th year of the Technical Internet Informatics program at IFPR.",
+    "bio2": "I've been working as a Full Stack Developer for over 2 years, building everything from landing pages to complete web applications. I'm passionate about technology, performance, and great user experiences.",
+    "bio3": "I've integrated AI into my daily workflow — mainly Claude Code — which allows me to deliver higher quality projects faster.",
+    "location": "Telêmaco Borba, PR — Brazil",
+    "education": "IFPR — Technical IT Program",
+    "experience": "2+ years of experience",
+    "status": "Open to projects"
+  },
+  "services": {
+    "tag": "What I do",
+    "title": "Services",
+    "subtitle": "Complete digital solutions for your business",
+    "items": {
+      "landing": {
+        "title": "Landing Pages",
+        "desc": "High-conversion pages, responsive and optimized for performance and SEO."
+      },
+      "webapp": {
+        "title": "Web Applications",
+        "desc": "Complete web systems with modern frontend and robust backend."
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "desc": "Online stores with cart, payments, and admin panel."
+      },
+      "api": {
+        "title": "APIs & Integrations",
+        "desc": "RESTful APIs, third-party service integrations, and automations."
+      },
+      "ui": {
+        "title": "UI/UX Design",
+        "desc": "Modern, intuitive interfaces aligned with your brand identity."
+      },
+      "maintenance": {
+        "title": "Maintenance & Support",
+        "desc": "Ongoing maintenance, updates, and technical support for your projects."
+      }
+    }
+  },
+  "stack": {
+    "tag": "Technologies",
+    "title": "My Stack",
+    "subtitle": "Tools I use every day",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "tools": "Tools",
+      "ai": "AI & Dev Tools"
+    }
+  },
+  "projects": {
+    "tag": "Portfolio",
+    "title": "Projects",
+    "subtitle": "Some of my recent work",
+    "view": "View Project",
+    "github": "GitHub",
+    "status": {
+      "completed": "Completed",
+      "concept": "Concept",
+      "ongoing": "Ongoing",
+      "private": "Private"
+    },
+    "type": {
+      "fullstack": "Full Stack",
+      "frontend": "Frontend",
+      "backend": "Backend"
+    }
+  },
+  "ai": {
+    "tag": "Edge",
+    "title": "AI & Tools",
+    "subtitle": "How AI amplifies my work",
+    "desc": "I've integrated AI tools into my development workflow. This allows me to deliver more complex projects with higher quality and in less time.",
+    "tools_title": "Tools I use",
+    "advantage_title": "My advantage",
+    "badge_title": "Built with AI",
+    "badge_desc": "This portfolio was built with Claude Code assistance — AI that accelerates development without compromising quality.",
+    "advantages": [
+      "Faster deliveries without losing quality",
+      "AI-assisted debugging and code review",
+      "Automatic documentation and test generation",
+      "Full focus on the solution, not the repetition"
+    ]
+  },
+  "contact": {
+    "tag": "Let's talk",
+    "title": "Contact",
+    "subtitle": "Ready to start your project?",
+    "desc": "Send me a message and let's talk about how I can help your business.",
+    "social": "Or find me here",
+    "form": {
+      "name": "Your name",
+      "email": "Your email",
+      "message": "Message",
+      "placeholder_message": "Tell me about your project...",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success_title": "Message sent!",
+      "success_desc": "I'll get back to you soon.",
+      "error": "Error sending. Please try again."
+    }
+  },
+  "footer": {
+    "made": "Built with React + AI",
+    "rights": "All rights reserved"
+  }
+}
