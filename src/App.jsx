@@ -1,16 +1,16 @@
+import { lazy, Suspense } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Services from './components/sections/Services';
-import Stack from './components/sections/Stack';
-import Projects from './components/sections/Projects';
-import Contact from './components/sections/Contact';
+import Hero   from './components/sections/Hero';
 
-const Fade = ({ from, to }) => (
-  <div className={`h-16 bg-gradient-to-b ${from} ${to}`} aria-hidden="true" />
-);
+const About    = lazy(() => import('./components/sections/About'));
+const Services = lazy(() => import('./components/sections/Services'));
+const Stack    = lazy(() => import('./components/sections/Stack'));
+const Projects = lazy(() => import('./components/sections/Projects'));
+const Contact  = lazy(() => import('./components/sections/Contact'));
+const Footer   = lazy(() => import('./components/layout/Footer'));
+
+const Placeholder = () => <div className="py-28" aria-hidden="true" />;
 
 export default function App() {
   return (
@@ -18,17 +18,17 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Fade from="from-zinc-50 dark:from-zinc-900" to="to-white dark:to-zinc-950" />
-        <Services />
-        <Fade from="from-white dark:from-zinc-950" to="to-zinc-50 dark:to-zinc-900" />
-        <Stack />
-        <Fade from="from-zinc-50 dark:from-zinc-900" to="to-white dark:to-zinc-950" />
-        <Projects />
-        <Fade from="from-white dark:from-zinc-950" to="to-zinc-50 dark:to-zinc-900" />
-        <Contact />
+        <Suspense fallback={<Placeholder />}>
+          <About />
+          <Services />
+          <Stack />
+          <Projects />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </ThemeProvider>
   );
 }
