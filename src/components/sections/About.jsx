@@ -20,7 +20,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-28 bg-zinc-50 dark:bg-zinc-900/40">
+    <section id="about" className="py-28">
       <div className="max-w-6xl mx-auto px-6">
         <motion.p {...fadeUp(0)} className="font-mono text-blue-500 text-xs mb-3 tracking-widest uppercase">
           {t('about.tag')}
