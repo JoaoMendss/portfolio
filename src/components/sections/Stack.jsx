@@ -237,10 +237,12 @@ export default function Stack() {
               onTalk={() => setModalOpen(true)}
             />
 
-            <SplineScene
-              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-              className="w-full h-full"
-            />
+            <div className="absolute inset-0 pt-14 lg:pt-0">
+              <SplineScene
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-full"
+              />
+            </div>
 
             {/* Sombra de contato */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-56 h-6 rounded-full bg-black/20 dark:bg-black/50 blur-2xl pointer-events-none" />
