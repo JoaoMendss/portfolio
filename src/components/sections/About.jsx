@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { MapPin, GraduationCap, Briefcase, CheckCircle2 } from 'lucide-react';
+import { MapPin, GraduationCap, Briefcase, CheckCircle2, Languages } from 'lucide-react';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
@@ -16,6 +16,7 @@ export default function About() {
     { icon: MapPin, key: 'about.location' },
     { icon: GraduationCap, key: 'about.education' },
     { icon: Briefcase, key: 'about.experience' },
+    { icon: Languages, key: 'about.english' },
     { icon: CheckCircle2, key: 'about.status', highlight: true },
   ];
 
@@ -32,13 +33,12 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
           {/* Photo */}
           <motion.div {...fadeUp(0.15)} className="relative">
-            <div className="aspect-square max-w-sm mx-auto md:mx-0 rounded-2xl bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 flex items-center justify-center overflow-hidden">
-              <div className="text-center text-zinc-400 dark:text-zinc-600 select-none">
-                <div className="w-24 h-24 rounded-full bg-zinc-300 dark:bg-zinc-700 mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-3xl font-bold text-zinc-400 dark:text-zinc-500">JM</span>
-                </div>
-                <p className="font-mono text-xs">foto em breve</p>
-              </div>
+            <div className="aspect-square max-w-sm mx-auto md:mx-0 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-950">
+              <img
+                src="/joao.png"
+                alt="João Mendes"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
             <div className="absolute -bottom-3 -right-3 w-full max-w-sm h-full rounded-2xl border border-blue-500/20 -z-10 pointer-events-none" />
           </motion.div>
