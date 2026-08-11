@@ -14,10 +14,10 @@ const icons = {
 const serviceKeys = ['landing', 'webapp', 'ecommerce', 'api', 'ui', 'maintenance'];
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6, delay, ease: 'easeOut' },
+  transition: { duration: 0.55, delay, ease: 'easeOut' },
 });
 
 export default function Services() {
@@ -36,25 +36,42 @@ export default function Services() {
           {t('services.subtitle')}
         </motion.p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div>
           {serviceKeys.map((key, i) => {
             const Icon = icons[key];
             return (
               <motion.div
                 key={key}
-                {...fadeUp(i * 0.07)}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="group p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-blue-500/40 bg-white dark:bg-zinc-900 transition-colors duration-300 cursor-default"
+                {...fadeUp(i * 0.06)}
+                className="group flex items-center gap-6 md:gap-10 py-6 border-b border-zinc-100 dark:border-zinc-800/70 last:border-0 cursor-default"
               >
-                <div className="w-10 h-10 rounded-lg bg-blue-500/10 group-hover:bg-blue-500/15 flex items-center justify-center mb-5 transition-colors">
-                  <Icon size={18} className="text-blue-500" />
+                {/* Number */}
+                <span className="font-mono text-xs text-zinc-300 dark:text-zinc-700 w-6 flex-shrink-0 select-none">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+
+                {/* Icon */}
+                <div className="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/10 transition-colors duration-300">
+                  <Icon size={15} className="text-zinc-400 dark:text-zinc-500 group-hover:text-blue-500 transition-colors duration-300" />
                 </div>
-                <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2 text-base">
+
+                {/* Title */}
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 w-44 flex-shrink-0 group-hover:text-blue-500 transition-colors duration-300">
                   {t(`services.items.${key}.title`)}
                 </h3>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+
+                {/* Dotted line */}
+                <div className="hidden md:block flex-1 border-t border-dashed border-zinc-200 dark:border-zinc-800" />
+
+                {/* Description */}
+                <p className="hidden md:block text-sm text-zinc-500 dark:text-zinc-400 text-right w-72 flex-shrink-0 leading-relaxed">
                   {t(`services.items.${key}.desc`)}
                 </p>
+
+                {/* Arrow */}
+                <span className="ml-auto md:ml-0 text-zinc-200 dark:text-zinc-700 group-hover:text-blue-500 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0 text-lg">
+                  →
+                </span>
               </motion.div>
             );
           })}
