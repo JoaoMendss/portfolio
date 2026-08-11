@@ -12,7 +12,7 @@
     "name": "João Mendes",
     "role": "Desenvolvedor Full Stack",
     "desc": "Construo experiências digitais modernas — de interfaces pixel-perfect a backends de alta performance.",
-    "cta_primary": "Ver Projetos",
+    "cta_primary": "Vamos conversar",
     "cta_secondary": "Falar Comigo",
     "available": "Disponível para projetos"
   },
@@ -122,8 +122,21 @@
       "error": "Erro ao enviar. Tente novamente."
     }
   },
+  "modal": {
+    "title": "Vamos conversar",
+    "subtitle": "Escolha como prefere entrar em contato",
+    "email_label": "E-mail",
+    "linkedin_label": "LinkedIn",
+    "form_label": "Formulário",
+    "form_desc": "Enviar uma mensagem detalhada",
+    "response": "Respondo em até 24h"
+  },
   "footer": {
-    "made": "Feito com React + IA",
-    "rights": "Todos os direitos reservados"
+    "tagline": "Construindo experiências digitais modernas — do frontend ao backend.",
+    "available": "Disponível para projetos",
+    "nav_title": "Navegação",
+    "contact_title": "Contato",
+    "rights": "Todos os direitos reservados",
+    "location": "Telêmaco Borba, PR — Brasil"
   }
 }
