@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '../../context/ThemeContext';
 import {
   SiHtml5, SiCss, SiJavascript, SiReact, SiTailwindcss,
   SiNodedotjs, SiPhp, SiExpress,
@@ -84,7 +85,7 @@ const stack = {
     { name: 'Claude Code', icon: Terminal, color: '#3b82f6' },
     { name: 'Cursor AI', icon: Code2, color: '#8B5CF6' },
     { name: 'ChatGPT', icon: Bot, color: '#74AA9C' },
-    { name: 'v0 by Vercel', icon: Cpu, color: '#ffffff' },
+    { name: 'v0 by Vercel', icon: Cpu, color: '#18181b', darkColor: '#ffffff' },
   ],
 };
 
@@ -174,6 +175,7 @@ function RobotBubble({ isEn, onTalk }) {
 export default function Stack() {
   const { t, i18n } = useTranslation();
   const isEn = i18n.language === 'en';
+  const { theme } = useTheme();
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -198,15 +200,16 @@ export default function Stack() {
                   {t(`stack.categories.${category}`)}
                 </p>
                 <div className="flex flex-wrap gap-2.5">
-                  {techs.map(({ name, icon: Icon, color }) => {
+                  {techs.map(({ name, icon: Icon, color, darkColor }) => {
                     const desc = isEn ? descriptions.en[name] : descriptions.pt[name];
+                    const iconColor = theme === 'dark' && darkColor ? darkColor : color;
                     return (
                       <motion.div
                         key={name}
                         whileHover={{ scale: 1.05, y: -2, transition: { duration: 0.15 } }}
                         className="relative group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors cursor-default"
                       >
-                        <Icon size={15} style={{ color }} />
+                        <Icon size={15} style={{ color: iconColor }} />
                         <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{name}</span>
 
                         {/* Tooltip */}
