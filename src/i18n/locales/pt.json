@@ -19,15 +19,16 @@
   "about": {
     "tag": "Sobre mim",
     "title": "Quem sou eu",
-    "bio1": "Tenho 17 anos, sou de Telêmaco Borba, PR, e estou no 4º ano do Curso Técnico em Informática para Internet no IFPR.",
-    "bio2": "Trabalho com desenvolvimento Full Stack há mais de 2 anos, construindo desde landing pages até aplicações web completas. Sou apaixonado por tecnologia, performance e boas experiências de usuário.",
-    "bio3": "Integrei IA ao meu fluxo de trabalho diário — principalmente o Claude Code — o que me permite entregar projetos com mais qualidade e velocidade.",
+    "bio1": "Tenho 17 anos, estudante no IFPR e desenvolvedor Full Stack há mais de 2 anos — construindo desde landing pages até plataformas completas.",
+    "bio2": "Co-fundei a SWS Company com meu irmão: uma empresa real de tecnologia com clientes reais, onde aplico tudo que sei na prática todos os dias.",
+    "bio3": "Integrei IA ao meu fluxo de trabalho — principalmente o Claude Code — o que me permite entregar projetos com mais qualidade e velocidade.",
     "location": "Telêmaco Borba, PR — Brasil",
     "education": "IFPR — Técnico em Informática",
     "experience": "2+ anos de experiência",
     "company": "Co-fundador · SWS Company",
     "english": "Inglês B2 (intermediário-avançado)",
-    "status": "Aberto para projetos"
+    "status": "Aberto para projetos",
+    "map_hint": "clique para expandir"
   },
   "services": {
     "tag": "O que eu faço",

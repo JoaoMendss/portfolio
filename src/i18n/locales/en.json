@@ -19,15 +19,16 @@
   "about": {
     "tag": "About me",
     "title": "Who I am",
-    "bio1": "I'm 17 years old, from Telêmaco Borba, Brazil, currently in my 4th year of the Technical Internet Informatics program at IFPR.",
-    "bio2": "I've been working as a Full Stack Developer for over 2 years, building everything from landing pages to complete web applications. I'm passionate about technology, performance, and great user experiences.",
-    "bio3": "I've integrated AI into my daily workflow — mainly Claude Code — which allows me to deliver higher quality projects faster.",
+    "bio1": "I'm 17, a student at IFPR and a Full Stack Developer with 2+ years of experience — building everything from landing pages to complete platforms.",
+    "bio2": "I co-founded SWS Company with my brother: a real software company with real clients, where I put everything I know into practice every day.",
+    "bio3": "I've integrated AI into my workflow — mainly Claude Code — which lets me deliver higher quality projects faster.",
     "location": "Telêmaco Borba, PR — Brazil",
     "education": "IFPR — Technical IT Program",
     "experience": "2+ years of experience",
     "company": "Co-founder · SWS Company",
     "english": "English B2 (upper-intermediate)",
-    "status": "Open to projects"
+    "status": "Open to projects",
+    "map_hint": "click to expand"
   },
   "services": {
     "tag": "What I do",
