@@ -6,26 +6,24 @@ import { X } from 'lucide-react';
 /* ─── Data ───────────────────────────────────────────────── */
 const PROJECTS = [
   {
-    slug: 'devburger',
-    name: 'DevBurger',
+    slug: 'podium-arena',
+    name: 'Podium Arena',
     type: 'fullstack',
-    status: 'completed',
-    github: 'https://github.com/JoaoMendss',
-    live: null,
-    tech: ['React', 'Node.js', 'PostgreSQL', 'Express', 'JWT'],
-    desc_pt: 'Plataforma completa de pedidos com painel admin, autenticação JWT e integração de pagamentos.',
-    desc_en: 'Complete ordering platform with admin panel, JWT authentication, and payment integration.',
-    about_pt: 'Sistema de delivery de hambúrgueres com dois painéis — cliente e admin. O cliente navega o cardápio, monta pedidos e acompanha status em tempo real. O admin gerencia produtos, categorias e pedidos com atualização automática.',
-    about_en: 'Burger delivery system with two panels — customer and admin. Customers browse the menu, build orders, and track status in real time. Admins manage products, categories, and orders with live updates.',
-    how_pt: 'Arquitetura em dois repositórios separados. Frontend em React + Vite com Context API para carrinho. Backend RESTful em Node.js/Express com autenticação via JWT e refresh tokens. PostgreSQL com Sequelize ORM, deploy em Railway (API) e Vercel (frontend).',
-    how_en: 'Two separate repositories. React + Vite frontend with Context API for cart state. Node.js/Express RESTful backend with JWT + refresh token auth. PostgreSQL via Sequelize ORM, deployed on Railway (API) and Vercel (frontend).',
+    status: 'ongoing',
+    live: 'https://frontend-five-vert-72.vercel.app/',
+    tech: ['React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'MercadoPago', 'JWT', 'Google OAuth'],
+    desc_pt: 'Sistema completo de reservas para arena de beach tennis, vôlei e futevolei — com painel de usuário, painel admin e pagamentos integrados.',
+    desc_en: 'Complete booking system for a beach tennis, volleyball and footvolley arena — with user panel, admin panel, and integrated payments.',
+    about_pt: 'Projeto desenvolvido em parceria com meu irmão para a Podium Arena, em Telêmaco Borba (PR). É uma plataforma completa de reservas de quadras com painel do usuário (histórico de reservas, Arena Credits, próximos agendamentos) e painel administrativo (gestão de quadras, horários, relatórios de pagamento). Os usuários podem pagar via Pix, cartão de crédito ou usar Arena Credits — créditos internos da arena.',
+    about_en: 'Project built with my brother for Podium Arena, in Telêmaco Borba, Brazil. A complete court booking platform with a user panel (booking history, Arena Credits, upcoming schedules) and an admin panel (court management, schedules, payment reports). Users can pay via Pix, credit card, or Arena Credits — the arena\'s internal credit system.',
+    how_pt: 'Frontend em React + Vite com React Router DOM para roteamento. Backend RESTful em Node.js/Express com MongoDB e Mongoose. Autenticação via JWT e login social com Google OAuth. Pagamentos integrados ao MercadoPago (Pix e cartão). Sistema de Arena Credits gerenciado no próprio banco. Frontend hospedado na Vercel e backend no Render.',
+    how_en: 'Frontend in React + Vite with React Router DOM for routing. RESTful backend in Node.js/Express with MongoDB and Mongoose. Authentication via JWT and social login with Google OAuth. Payments integrated with MercadoPago (Pix and credit card). Arena Credits system managed in the database. Frontend hosted on Vercel, backend on Render.',
   },
   {
     slug: 'smart-collar',
     name: 'Smart Collar',
     type: 'fullstack',
     status: 'concept',
-    github: 'https://github.com/JoaoMendss',
     live: null,
     tech: ['React', 'Node.js', 'MongoDB', 'WebSocket', 'ESP32'],
     desc_pt: 'Startup de monitoramento de pets via IoT — dashboard em tempo real e gestão de dispositivos.',
@@ -40,7 +38,6 @@ const PROJECTS = [
     name: 'MetaBoost',
     type: 'frontend',
     status: 'completed',
-    github: 'https://github.com/JoaoMendss',
     live: null,
     tech: ['HTML5', 'CSS3', 'JavaScript'],
     desc_pt: 'Frontend para marca de suplementos — design responsivo e otimizado para conversão.',
@@ -55,7 +52,6 @@ const PROJECTS = [
     name: 'Currency Converter',
     type: 'frontend',
     status: 'completed',
-    github: 'https://github.com/JoaoMendss',
     live: null,
     tech: ['JavaScript', 'HTML5', 'CSS3', 'REST API'],
     desc_pt: 'Conversor de moedas em tempo real com API de câmbio ao vivo e interface limpa.',
@@ -70,7 +66,6 @@ const PROJECTS = [
     name: 'JS Games',
     type: 'frontend',
     status: 'ongoing',
-    github: 'https://github.com/JoaoMendss',
     live: null,
     tech: ['JavaScript', 'Canvas API', 'HTML5'],
     desc_pt: 'Coleção de jogos browser com JavaScript puro — lógica, arcade e física.',
@@ -85,7 +80,6 @@ const PROJECTS = [
     name: 'UI Lab',
     type: 'frontend',
     status: 'ongoing',
-    github: 'https://github.com/JoaoMendss',
     live: null,
     tech: ['CSS3', 'HTML5', 'JavaScript', 'React', 'Framer Motion'],
     desc_pt: 'Experimentos de UI — interfaces complexas, animações e padrões avançados de design.',
@@ -123,6 +117,7 @@ function ProjectModal({ project, onClose, isEn }) {
 
   const about = isEn ? project.about_en : project.about_pt;
   const how   = isEn ? project.how_en   : project.how_pt;
+  const liveLabel = isEn ? 'open project' : 'ver ao vivo';
 
   return (
     <AnimatePresence>
@@ -171,12 +166,10 @@ function ProjectModal({ project, onClose, isEn }) {
                 [&::-webkit-scrollbar-thumb]:bg-zinc-700
                 [&::-webkit-scrollbar-thumb]:rounded-full">
 
-                {/* Prompt */}
                 <p className="text-zinc-600 text-xs">
                   <span className="text-blue-500">$</span> cat {project.slug}-full.md
                 </p>
 
-                {/* Heading + meta */}
                 <div className="space-y-1.5">
                   <p className="text-zinc-100 font-bold text-base"># {project.name}</p>
                   <p className="text-xs flex items-center gap-2">
@@ -189,23 +182,16 @@ function ProjectModal({ project, onClose, isEn }) {
 
                 <div className="border-t border-zinc-800/60" />
 
-                {/* About */}
                 <div className="space-y-2">
                   <p className="text-blue-400 text-xs">## {isEn ? 'About' : 'Sobre'}</p>
-                  <p className="text-zinc-400 leading-relaxed text-xs border-l-2 border-zinc-800 pl-3">
-                    {about}
-                  </p>
+                  <p className="text-zinc-400 leading-relaxed text-xs border-l-2 border-zinc-800 pl-3">{about}</p>
                 </div>
 
-                {/* How it was built */}
                 <div className="space-y-2">
                   <p className="text-blue-400 text-xs">## {isEn ? 'How it was built' : 'Como foi feito'}</p>
-                  <p className="text-zinc-400 leading-relaxed text-xs border-l-2 border-zinc-800 pl-3">
-                    {how}
-                  </p>
+                  <p className="text-zinc-400 leading-relaxed text-xs border-l-2 border-zinc-800 pl-3">{how}</p>
                 </div>
 
-                {/* Tech */}
                 <div className="space-y-2">
                   <p className="text-blue-400 text-xs">## Tech stack</p>
                   <div className="flex flex-wrap gap-2">
@@ -217,29 +203,21 @@ function ProjectModal({ project, onClose, isEn }) {
                   </div>
                 </div>
 
-                <div className="border-t border-zinc-800/60" />
-
-                {/* Links */}
-                <div className="flex items-center gap-4 text-xs">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-500 hover:text-zinc-200 transition-colors"
-                  >
-                    [↗ github]
-                  </a>
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-zinc-500 hover:text-zinc-200 transition-colors"
-                    >
-                      [↗ live demo]
-                    </a>
-                  )}
-                </div>
+                {project.live && (
+                  <>
+                    <div className="border-t border-zinc-800/60" />
+                    <div className="flex items-center gap-4 text-xs">
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        [↗ {liveLabel}]
+                      </a>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
@@ -258,7 +236,6 @@ function Terminal({ path, onClick, children, className = '' }) {
         hover:border-zinc-600 hover:shadow-blue-500/[0.07] transition-all duration-300
         cursor-pointer flex flex-col group ${className}`}
     >
-      {/* Title bar */}
       <div className="flex items-center gap-1.5 px-4 py-3 border-b border-zinc-800 bg-[#161616] flex-shrink-0">
         <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
         <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
@@ -283,25 +260,52 @@ function Prompt({ cmd }) {
   );
 }
 
-function GithubLink({ href }) {
+function LiveLink({ href, isEn }) {
+  if (!href) return null;
   return (
     <div className="pt-2 mt-auto border-t border-zinc-800/60">
-      <span className="text-zinc-600">[↗ github]</span>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(e) => e.stopPropagation()}
+        className="text-blue-400 hover:text-blue-300 transition-colors"
+      >
+        [↗ {isEn ? 'open project' : 'ver ao vivo'}]
+      </a>
     </div>
   );
 }
 
 /* ─── Card variants ──────────────────────────────────────── */
-function DevBurgerCard({ project, onClick, delay }) {
+function PodiumArenaCard({ project, onClick, isEn, delay }) {
+  const courts = isEn
+    ? [['[1]', 'Beach Tennis', true], ['[2]', 'Volleyball', true], ['[3]', 'Footvolley', false]]
+    : [['[1]', 'Beach Tennis', true], ['[2]', 'Vôlei', true], ['[3]', 'Futevolei', false]];
+
   return (
     <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }} className="lg:col-span-2">
-      <Terminal path="~/projects/devburger.md" onClick={onClick} className="h-full">
-        <Prompt cmd="cat devburger.md" />
-        <p className="text-zinc-100 font-bold text-sm mt-1"># DevBurger</p>
-        <p className="text-zinc-600">&gt; <span className="text-zinc-500">fullstack</span> · <span className="text-emerald-400">completed</span></p>
-        <p className="text-zinc-400 leading-relaxed border-l-2 border-zinc-800 pl-3">{project.desc_pt}</p>
-        <p><span className="text-blue-400">tech</span><span className="text-zinc-700">: </span><span className="text-emerald-400">React · Node.js · PostgreSQL · Express · JWT</span></p>
-        <GithubLink href={project.github} />
+      <Terminal path="~/projects/podium-arena" onClick={onClick} className="h-full">
+        <Prompt cmd="curl /api/courts/status" />
+        <div className="space-y-1 mt-1">
+          <p className="text-zinc-600 text-[11px] mb-2">{isEn ? '> courts status' : '> status das quadras'}</p>
+          {courts.map(([num, name, available]) => (
+            <p key={name} className="flex items-center gap-2">
+              <span className="text-zinc-600">{num}</span>
+              <span className="text-zinc-400 w-24">{name}</span>
+              <span className={available ? 'text-emerald-400' : 'text-red-400'}>
+                {available ? '✓ disponível' : '✗ reservado'}
+              </span>
+            </p>
+          ))}
+          <p className="text-zinc-600 mt-2">
+            {isEn ? '> payments: ' : '> pagamentos: '}
+            <span className="text-zinc-400">Pix · {isEn ? 'Credit Card' : 'Cartão'} · Arena Credits</span>
+          </p>
+        </div>
+        <p className="text-zinc-600">&gt; <span className="text-zinc-500">fullstack</span> · <span className="text-blue-400">ongoing</span></p>
+        <p><span className="text-blue-400">tech</span><span className="text-zinc-700">: </span><span className="text-emerald-400">React · Node.js · MongoDB · MercadoPago</span></p>
+        <LiveLink href={project.live} isEn={isEn} />
       </Terminal>
     </motion.div>
   );
@@ -324,7 +328,7 @@ function SmartCollarCard({ project, onClick, delay }) {
           ))}
         </div>
         <p className="text-zinc-600">&gt; <span className="text-zinc-500">fullstack</span> · <span className="text-yellow-400">concept</span></p>
-        <GithubLink href={project.github} />
+        <LiveLink href={project.live} />
       </Terminal>
     </motion.div>
   );
@@ -343,7 +347,7 @@ function MetaBoostCard({ project, onClick, delay }) {
           <p className="text-zinc-600 mt-1">built in <span className="text-emerald-400">1.24s</span></p>
         </div>
         <p className="text-zinc-600">&gt; <span className="text-zinc-500">frontend</span> · <span className="text-emerald-400">completed</span></p>
-        <GithubLink href={project.github} />
+        <LiveLink href={project.live} />
       </Terminal>
     </motion.div>
   );
@@ -362,7 +366,7 @@ function CurrencyCard({ project, onClick, delay }) {
           <p className="text-zinc-600">status: <span className="text-emerald-400">✓ live</span></p>
         </div>
         <p className="text-zinc-600">&gt; <span className="text-zinc-500">frontend</span> · <span className="text-emerald-400">completed</span></p>
-        <GithubLink href={project.github} />
+        <LiveLink href={project.live} />
       </Terminal>
     </motion.div>
   );
@@ -382,7 +386,7 @@ function GamesCard({ project, onClick, delay }) {
           ))}
         </div>
         <p className="text-zinc-600">&gt; <span className="text-zinc-500">frontend</span> · <span className="text-blue-400">ongoing</span></p>
-        <GithubLink href={project.github} />
+        <LiveLink href={project.live} />
       </Terminal>
     </motion.div>
   );
@@ -416,9 +420,7 @@ function UILabCard({ project, onClick, isEn, delay }) {
                 </p>
               ))}
             </div>
-            <div className="pt-2 border-t border-zinc-800/60">
-              <span className="text-zinc-600">[↗ github]</span>
-            </div>
+            <LiveLink href={project.live} isEn={isEn} />
           </div>
         </div>
       </Terminal>
@@ -448,20 +450,16 @@ export default function Projects() {
         </motion.p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
-          <DevBurgerCard   project={p('devburger')}         onClick={() => setSelected(p('devburger'))}         delay={0}    />
-          <SmartCollarCard project={p('smart-collar')}      onClick={() => setSelected(p('smart-collar'))}      delay={0.06} />
-          <MetaBoostCard   project={p('metaboost')}         onClick={() => setSelected(p('metaboost'))}         delay={0.10} />
-          <CurrencyCard    project={p('currency-converter')} onClick={() => setSelected(p('currency-converter'))} delay={0.14} />
-          <GamesCard       project={p('js-games')}          onClick={() => setSelected(p('js-games'))}          delay={0.18} />
+          <PodiumArenaCard project={p('podium-arena')}      onClick={() => setSelected(p('podium-arena'))}      isEn={isEn}  delay={0}    />
+          <SmartCollarCard project={p('smart-collar')}      onClick={() => setSelected(p('smart-collar'))}                   delay={0.06} />
+          <MetaBoostCard   project={p('metaboost')}         onClick={() => setSelected(p('metaboost'))}                      delay={0.10} />
+          <CurrencyCard    project={p('currency-converter')} onClick={() => setSelected(p('currency-converter'))}             delay={0.14} />
+          <GamesCard       project={p('js-games')}          onClick={() => setSelected(p('js-games'))}                       delay={0.18} />
           <UILabCard       project={p('ui-lab')}            onClick={() => setSelected(p('ui-lab'))}            isEn={isEn}  delay={0.22} />
         </div>
       </div>
 
-      <ProjectModal
-        project={selected}
-        onClose={() => setSelected(null)}
-        isEn={isEn}
-      />
+      <ProjectModal project={selected} onClose={() => setSelected(null)} isEn={isEn} />
     </section>
   );
 }
