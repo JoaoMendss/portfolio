@@ -214,14 +214,14 @@ export default function Stack() {
 
                         {/* Tooltip */}
                         {desc && (
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 z-50 w-52 pointer-events-none
+                          <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 z-50 w-44 sm:w-52 pointer-events-none
                             opacity-0 translate-y-1.5 group-hover:opacity-100 group-hover:translate-y-0
                             transition-all duration-200 ease-out delay-150 group-hover:delay-0">
                             <div className="bg-zinc-900 border border-zinc-700 rounded-xl px-3.5 py-2.5 shadow-xl">
                               <p className="font-mono text-[11px] text-zinc-300 leading-relaxed">{desc}</p>
                             </div>
                             {/* Seta */}
-                            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[5px] w-2.5 h-2.5 rotate-45 bg-zinc-900 border-r border-b border-zinc-700" />
+                            <div className="absolute top-full left-4 sm:left-1/2 sm:-translate-x-1/2 -mt-[5px] w-2.5 h-2.5 rotate-45 bg-zinc-900 border-r border-b border-zinc-700" />
                           </div>
                         )}
                       </motion.div>
