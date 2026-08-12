@@ -489,10 +489,7 @@ function DevBurgerCard({ project, onClick, isEn, delay }) {
           </p>
         </div>
         <p className="text-zinc-600">&gt; <span className="text-zinc-500">fullstack</span> · <span className="text-emerald-400">completed</span></p>
-        <div className="pt-2 mt-auto border-t border-zinc-800/60 flex items-center justify-between">
-          <LiveLink href={project.live} isEn={isEn} />
-          <span className="text-zinc-700 text-[10px]">{isEn ? 'no AI used' : 'sem IA'}</span>
-        </div>
+        <LiveLink href={project.live} isEn={isEn} />
       </Terminal>
     </motion.div>
   );
