@@ -48,18 +48,18 @@ const PROJECTS = [
     how_en: 'Hardware planned with ESP32 (built-in WiFi/BLE), MAX30102 BPM sensor, MPU-6050 accelerometer, NEO-6M GPS, and temperature sensor. Data transmitted via MQTT to a cloud broker. Node.js backend consuming the broker and distributing via WebSocket to the app. React Native + Expo app (iOS and Android). MongoDB for sensor time-series storage.',
   },
   {
-    slug: 'metaboost',
-    name: 'MetaBoost',
-    type: 'frontend',
-    status: 'completed',
+    slug: 'smart-finance',
+    name: 'Smart Finance',
+    type: 'fullstack',
+    status: 'ongoing',
     live: null,
-    tech: ['HTML5', 'CSS3', 'JavaScript'],
-    desc_pt: 'Frontend para marca de suplementos — design responsivo e otimizado para conversão.',
-    desc_en: 'Frontend for a supplement brand — responsive design optimized for conversion.',
-    about_pt: 'Landing page de alta conversão para marca de suplementos esportivos. Design focado em credibilidade e performance — seções de produto, depoimentos, FAQ e CTA estratégico. Mobile-first e otimizado para SEO.',
-    about_en: 'High-conversion landing page for a sports supplement brand. Design focused on credibility and performance — product sections, testimonials, FAQ, and strategic CTA. Mobile-first and SEO optimized.',
-    how_pt: 'Desenvolvido com HTML5, CSS3 e JavaScript vanilla para máxima performance sem dependências externas. Animações com CSS transitions e Intersection Observer API. Score 95+ no Lighthouse em performance e acessibilidade.',
-    how_en: 'Built with vanilla HTML5, CSS3, and JavaScript for maximum performance without external dependencies. Animations via CSS transitions and Intersection Observer API. 95+ Lighthouse score in performance and accessibility.',
+    tech: ['React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'Google Gemini', 'JWT'],
+    desc_pt: 'TCC — sistema de gestão financeira pessoal com o Fin, assistente de IA que analisa receitas, despesas e metas e conversa com você por chat.',
+    desc_en: 'Final project — personal finance management system with Fin, an AI assistant that analyzes income, expenses, and goals and chats with you.',
+    about_pt: 'Projeto de TCC em desenvolvimento. O Smart Finance é um sistema completo de gestão financeira pessoal com dashboard, transações, orçamentos por categoria, metas de economia e transações recorrentes. O diferencial é o Fin — um assistente de IA integrado ao Google Gemini que analisa seus dados reais, responde perguntas, faz simulações ("se eu economizar R$ 300/mês...") e gera relatórios mensais automáticos. Tem importação de extrato CSV (Nubank, Inter etc.) com categorização automática e conformidade com LGPD.',
+    about_en: 'TCC final project in development. Smart Finance is a complete personal finance management system with dashboard, transactions, category budgets, savings goals, and recurring transactions. The highlight is Fin — a Google Gemini-powered AI assistant that analyzes your real data, answers questions, runs simulations, and generates automatic monthly reports. Supports CSV statement import (Nubank, Inter, etc.) with automatic categorization and LGPD compliance.',
+    how_pt: 'Frontend em React 18 + Vite com CSS puro e gráficos SVG nativos. Backend Node.js + Express com MongoDB e autenticação JWT + Google OAuth. IA integrada ao Google Gemini (gemini-2.5-flash, camada gratuita) — o sistema funciona normalmente sem a chave, usando insights baseados em regras. Sistema de recorrência automática de transações fixas rodando no servidor.',
+    how_en: 'Frontend in React 18 + Vite with pure CSS and native SVG charts. Node.js + Express backend with MongoDB and JWT + Google OAuth authentication. AI integrated with Google Gemini (gemini-2.5-flash, free tier) — the system works without the key using rule-based insights. Automatic recurrence system for fixed transactions running server-side.',
   },
   {
     slug: 'currency-converter',
@@ -414,20 +414,32 @@ function SmartCollarCard({ project, onClick, delay }) {
   );
 }
 
-function MetaBoostCard({ project, onClick, delay }) {
+function SmartFinanceCard({ project, onClick, isEn, delay }) {
   return (
     <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }}>
-      <Terminal path="~/projects/metaboost" onClick={onClick} className="h-full">
-        <Prompt cmd="npm run build" />
+      <Terminal path="~/projects/smart-finance" onClick={onClick} className="h-full">
+        <Prompt cmd="node fin.js --insight" />
         <div className="space-y-1 mt-1">
-          <p className="text-zinc-600">&gt; metaboost@1.0.0 build</p>
-          <p><span className="text-emerald-400">✓</span> <span className="text-zinc-400">css  </span><span className="text-zinc-500">12.4 kB │ gzip: 4.1 kB</span></p>
-          <p><span className="text-emerald-400">✓</span> <span className="text-zinc-400">js   </span><span className="text-zinc-500">48.1 kB │ gzip: 16.8 kB</span></p>
-          <p><span className="text-emerald-400">✓</span> <span className="text-zinc-400">html </span><span className="text-zinc-500">optimized</span></p>
-          <p className="text-zinc-600 mt-1">built in <span className="text-emerald-400">1.24s</span></p>
+          <p className="text-zinc-600 text-[11px]">{isEn ? '> loading financial data' : '> carregando dados'}
+            <span className="animate-pulse">...</span>
+          </p>
+          {[
+            [isEn ? 'balance'  : 'saldo',    'R$ 4.850'],
+            [isEn ? 'income'   : 'receitas', 'R$ 3.200/mês'],
+            [isEn ? 'expenses' : 'despesas', 'R$ 1.847/mês'],
+            [isEn ? 'saved'    : 'guardado', 'R$ 1.353 (42%) ✓'],
+          ].map(([k, v]) => (
+            <p key={k} className="flex gap-2 text-[11px]">
+              <span className="text-blue-400 w-16 flex-shrink-0">{k}:</span>
+              <span className="text-zinc-300">{v}</span>
+            </p>
+          ))}
+          <p className="text-emerald-400 text-[11px] mt-1 border-l-2 border-zinc-800 pl-2 leading-relaxed">
+            Fin: {isEn ? 'you saved 42% of income this month!' : 'você economizou 42% da renda este mês!'}
+          </p>
         </div>
-        <p className="text-zinc-600">&gt; <span className="text-zinc-500">frontend</span> · <span className="text-emerald-400">completed</span></p>
-        <LiveLink href={project.live} />
+        <p className="text-zinc-600">&gt; <span className="text-zinc-500">fullstack</span> · <span className="text-blue-400">ongoing</span> · <span className="text-yellow-400/80">TCC</span></p>
+        <LiveLink href={project.live} isEn={isEn} />
       </Terminal>
     </motion.div>
   );
@@ -533,7 +545,7 @@ export default function Projects() {
           <SWSCard         project={p('sws-company')}         onClick={() => setSelected(p('sws-company'))}         isEn={isEn}  delay={0}    />
           <PodiumArenaCard project={p('podium-arena')}        onClick={() => setSelected(p('podium-arena'))}        isEn={isEn}  delay={0.06} />
           <SmartCollarCard project={p('smart-collar')}        onClick={() => setSelected(p('smart-collar'))}                     delay={0.10} />
-          <MetaBoostCard   project={p('metaboost')}           onClick={() => setSelected(p('metaboost'))}                        delay={0.14} />
+          <SmartFinanceCard project={p('smart-finance')}       onClick={() => setSelected(p('smart-finance'))}      isEn={isEn}  delay={0.14} />
           <CurrencyCard    project={p('currency-converter')}  onClick={() => setSelected(p('currency-converter'))}               delay={0.18} />
           <GamesCard       project={p('js-games')}            onClick={() => setSelected(p('js-games'))}                         delay={0.22} />
           <UILabCard       project={p('ui-lab')}              onClick={() => setSelected(p('ui-lab'))}              isEn={isEn}  delay={0.26} />
