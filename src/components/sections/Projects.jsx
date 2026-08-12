@@ -233,7 +233,9 @@ function ProjectModal({ project, onClose, isEn }) {
                         </a>
                       )}
                       {!project.live && project.github && (
-                        <span className="text-yellow-400/70">{isEn ? 'production deploy coming soon' : 'deploy em produção em breve'}</span>
+                        <span className="text-yellow-400/70 flex items-center gap-1.5">
+                          <span className="animate-pulse">●</span>{isEn ? 'prod: pending' : 'prod: pendente'}
+                        </span>
                       )}
                     </div>
                   </>
@@ -455,7 +457,9 @@ function SmartFinanceCard({ project, onClick, isEn, delay }) {
           >
             [↗ github]
           </a>
-          <span className="text-yellow-400/60 text-[10px]">{isEn ? 'deploy soon' : 'deploy em breve'}</span>
+          <span className="text-yellow-400/60 text-[10px] flex items-center gap-1">
+            <span className="animate-pulse">●</span>{isEn ? 'prod: pending' : 'prod: pendente'}
+          </span>
         </div>
       </Terminal>
     </motion.div>
