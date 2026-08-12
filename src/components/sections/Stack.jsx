@@ -140,7 +140,7 @@ function RobotBubble({ isEn, onTalk }) {
       initial={{ opacity: 0, y: -10, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: 1.4, type: 'spring', stiffness: 220, damping: 22 }}
-      className="absolute -top-2 left-4 md:left-[28%] z-10 max-w-[210px]"
+      className="absolute -top-2 left-4 md:left-[28%] lg:left-4 z-10 max-w-[210px]"
     >
       {/* Bubble */}
       <div className="relative bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl rounded-br-none px-4 py-3.5 shadow-xl">
