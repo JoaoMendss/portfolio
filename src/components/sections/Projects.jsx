@@ -327,7 +327,7 @@ function PodiumArenaCard({ project, onClick, isEn, delay }) {
 
 function SWSCard({ project, onClick, isEn, delay }) {
   return (
-    <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }} className="lg:col-span-2">
+    <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }} className="md:col-span-2 lg:col-span-3">
       <Terminal path="~/projects/sws-company" onClick={onClick} className="h-full">
         <Prompt cmd={`curl swscompany.com.br/api/info`} />
         <div className="space-y-1.5 mt-1">
@@ -495,13 +495,13 @@ export default function Projects() {
         </motion.p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
-          <PodiumArenaCard project={p('podium-arena')}  onClick={() => setSelected(p('podium-arena'))}  isEn={isEn}  delay={0}    />
-          <SmartCollarCard project={p('smart-collar')}  onClick={() => setSelected(p('smart-collar'))}               delay={0.06} />
-          <SWSCard         project={p('sws-company')}   onClick={() => setSelected(p('sws-company'))}   isEn={isEn}  delay={0.10} />
-          <MetaBoostCard   project={p('metaboost')}          onClick={() => setSelected(p('metaboost'))}                       delay={0.14} />
-          <CurrencyCard    project={p('currency-converter')} onClick={() => setSelected(p('currency-converter'))}              delay={0.18} />
-          <GamesCard       project={p('js-games')}           onClick={() => setSelected(p('js-games'))}                        delay={0.22} />
-          <UILabCard       project={p('ui-lab')}             onClick={() => setSelected(p('ui-lab'))}             isEn={isEn}  delay={0.26} />
+          <SWSCard         project={p('sws-company')}         onClick={() => setSelected(p('sws-company'))}         isEn={isEn}  delay={0}    />
+          <PodiumArenaCard project={p('podium-arena')}        onClick={() => setSelected(p('podium-arena'))}        isEn={isEn}  delay={0.06} />
+          <SmartCollarCard project={p('smart-collar')}        onClick={() => setSelected(p('smart-collar'))}                     delay={0.10} />
+          <MetaBoostCard   project={p('metaboost')}           onClick={() => setSelected(p('metaboost'))}                        delay={0.14} />
+          <CurrencyCard    project={p('currency-converter')}  onClick={() => setSelected(p('currency-converter'))}               delay={0.18} />
+          <GamesCard       project={p('js-games')}            onClick={() => setSelected(p('js-games'))}                         delay={0.22} />
+          <UILabCard       project={p('ui-lab')}              onClick={() => setSelected(p('ui-lab'))}              isEn={isEn}  delay={0.26} />
         </div>
       </div>
 
