@@ -25,13 +25,13 @@ const PROJECTS = [
     type: 'fullstack',
     status: 'concept',
     live: null,
-    tech: ['React', 'Node.js', 'MongoDB', 'WebSocket', 'ESP32'],
-    desc_pt: 'Startup de monitoramento de pets via IoT — dashboard em tempo real e gestão de dispositivos.',
-    desc_en: 'Pet monitoring startup via IoT — real-time dashboard and device management.',
-    about_pt: 'Coleiras inteligentes que enviam dados de localização, temperatura corporal e nível de atividade do pet para um dashboard web. Proprietários acompanham a saúde e localização em tempo real pelo celular ou desktop.',
-    about_en: 'Smart collars that send pet location, body temperature, and activity data to a web dashboard. Owners monitor health and location in real time via mobile or desktop.',
-    how_pt: 'Conceito desenvolvido com dashboard em React e backend Node.js usando WebSockets para streaming de dados em tempo real. MongoDB para armazenar séries temporais dos sensores. Hardware planejado com ESP32 + GPS NEO-6M + sensor de temperatura.',
-    how_en: 'Concept developed with React dashboard and Node.js backend using WebSockets for real-time data streaming. MongoDB for sensor time-series storage. Hardware planned with ESP32 + GPS NEO-6M + temperature sensor.',
+    tech: ['React Native', 'Expo', 'Node.js', 'MQTT', 'MongoDB', 'WebSocket', 'ESP32'],
+    desc_pt: 'Startup do IFPR — coleira inteligente para cães com monitoramento de BPM, GPS, passos, calorias e respiração em tempo real via app.',
+    desc_en: 'IFPR startup — smart collar for dogs monitoring BPM, GPS, steps, calories, and breathing in real time via mobile app.',
+    about_pt: 'Ideia de startup desenvolvida no IFPR (Telêmaco Borba, PR). O conceito é uma coleira inteligente para cães — como um smartwatch, só que para pets. A coleira capturaria dados contínuos: batimentos cardíacos, passos, calorias gastas, localização GPS, temperatura corporal e frequência respiratória. Todas as métricas seriam acompanhadas em tempo real pelo dono através de um aplicativo mobile.',
+    about_en: 'Startup idea developed at IFPR (Telêmaco Borba, Brazil). The concept is a smart collar for dogs — like a smartwatch, but for pets. The collar would capture continuous data: heart rate, steps, calories burned, GPS location, body temperature, and breathing rate. All metrics would be monitored in real time by the owner through a mobile app.',
+    how_pt: 'Hardware planejado com ESP32 (WiFi/BLE integrado), sensor de BPM MAX30102, acelerômetro MPU-6050, GPS NEO-6M e sensor de temperatura. Os dados seriam transmitidos via MQTT para um broker na nuvem. Backend em Node.js consumindo o broker e distribuindo via WebSocket para o app. App em React Native + Expo (iOS e Android). MongoDB para armazenar séries temporais dos sensores.',
+    how_en: 'Hardware planned with ESP32 (built-in WiFi/BLE), MAX30102 BPM sensor, MPU-6050 accelerometer, NEO-6M GPS, and temperature sensor. Data transmitted via MQTT to a cloud broker. Node.js backend consuming the broker and distributing via WebSocket to the app. React Native + Expo app (iOS and Android). MongoDB for sensor time-series storage.',
   },
   {
     slug: 'metaboost',
@@ -315,16 +315,21 @@ function SmartCollarCard({ project, onClick, delay }) {
   return (
     <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }}>
       <Terminal path="~/projects/smart-collar" onClick={onClick} className="h-full">
-        <Prompt cmd="git log --oneline -5" />
+        <Prompt cmd="mqtt subscribe collar/dog-001/sensors" />
         <div className="space-y-1.5 mt-1">
+          <p className="text-zinc-600 text-[11px]">&gt; device: <span className="text-emerald-400">smartcollar-001</span> <span className="animate-pulse">●</span></p>
           {[
-            ['a3f9c12', 'add real-time IoT dashboard'],
-            ['b721e8a', 'integrate device management'],
-            ['c934d1f', 'setup MongoDB aggregation'],
-            ['d102fa9', 'add JWT auth layer'],
-            ['e891b3c', 'initial commit'],
-          ].map(([hash, msg]) => (
-            <p key={hash}><span className="text-yellow-500/80">{hash}</span><span className="text-zinc-400"> {msg}</span></p>
+            ['❤', 'bpm',   '92 bpm'],
+            ['🐾', 'steps', '1.423'],
+            ['📍', 'gps',   '-24.32, -50.82'],
+            ['🌡', 'temp',  '38.4 °C'],
+            ['💨', 'resp',  '22 rpm'],
+          ].map(([emoji, key, val]) => (
+            <p key={key} className="flex gap-2">
+              <span>{emoji}</span>
+              <span className="text-blue-400 w-10">{key}</span>
+              <span className="text-zinc-300">{val}</span>
+            </p>
           ))}
         </div>
         <p className="text-zinc-600">&gt; <span className="text-zinc-500">fullstack</span> · <span className="text-yellow-400">concept</span></p>
