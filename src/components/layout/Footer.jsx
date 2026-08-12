@@ -17,7 +17,7 @@ const SOCIAL = [
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/joaolcmendes/',
+    href: 'https://www.linkedin.com/in/joaomendss/',
     icon: FiLinkedin,
   },
   {
@@ -113,13 +113,13 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://www.linkedin.com/in/joaolcmendes/"
+                href="https://www.linkedin.com/in/joaomendss/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
               >
                 <FiLinkedin size={14} className="flex-shrink-0" />
-                <span>linkedin.com/in/joaolcmendes</span>
+                <span>linkedin.com/in/joaomendss</span>
                 <FiArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
               </a>
             </li>
