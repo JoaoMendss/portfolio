@@ -355,7 +355,6 @@ function SWSCard({ project, onClick, isEn, delay }) {
                 </p>
               ))}
             </div>
-            <LiveLink href={project.live} isEn={isEn} />
           </div>
 
           {/* Direita — serviços */}
@@ -375,6 +374,7 @@ function SWSCard({ project, onClick, isEn, delay }) {
           </div>
 
         </div>
+        <LiveLink href={project.live} isEn={isEn} />
       </Terminal>
     </motion.div>
   );
