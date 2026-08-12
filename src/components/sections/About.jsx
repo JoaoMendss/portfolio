@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { MapPin, GraduationCap, Briefcase, CheckCircle2, Languages } from 'lucide-react';
+import { MapPin, GraduationCap, Briefcase, CheckCircle2, Languages, Building2 } from 'lucide-react';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
@@ -13,11 +13,12 @@ export default function About() {
   const { t } = useTranslation();
 
   const facts = [
-    { icon: MapPin, key: 'about.location' },
+    { icon: MapPin,        key: 'about.location' },
     { icon: GraduationCap, key: 'about.education' },
-    { icon: Briefcase, key: 'about.experience' },
-    { icon: Languages, key: 'about.english' },
-    { icon: CheckCircle2, key: 'about.status', highlight: true },
+    { icon: Briefcase,     key: 'about.experience' },
+    { icon: Building2,     key: 'about.company', href: 'https://swscompany.com.br' },
+    { icon: Languages,     key: 'about.english' },
+    { icon: CheckCircle2,  key: 'about.status', highlight: true },
   ];
 
   return (
@@ -56,19 +57,30 @@ export default function About() {
             </motion.p>
 
             <motion.div {...fadeUp(0.44)} className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-              {facts.map(({ icon: Icon, key, highlight }) => (
-                <div
-                  key={key}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-sm font-medium transition-colors ${
-                    highlight
-                      ? 'border-blue-500/30 bg-blue-500/5 text-blue-600 dark:text-blue-400'
-                      : 'border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400'
-                  }`}
-                >
-                  <Icon size={14} className={highlight ? 'text-blue-500' : 'text-zinc-400'} />
-                  {t(key)}
-                </div>
-              ))}
+              {facts.map(({ icon: Icon, key, highlight, href }) => {
+                const className = `flex items-center gap-3 px-4 py-3 rounded-xl border text-sm font-medium transition-colors ${
+                  highlight
+                    ? 'border-blue-500/30 bg-blue-500/5 text-blue-600 dark:text-blue-400'
+                    : href
+                    ? 'border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400'
+                    : 'border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400'
+                }`;
+                const iconClass = highlight ? 'text-blue-500' : href ? 'text-zinc-500 dark:text-zinc-400' : 'text-zinc-400';
+                const content = (
+                  <>
+                    <Icon size={14} className={iconClass} />
+                    {t(key)}
+                    {href && <span className="ml-auto text-xs opacity-50">↗</span>}
+                  </>
+                );
+                return href ? (
+                  <a key={key} href={href} target="_blank" rel="noopener noreferrer" className={className}>
+                    {content}
+                  </a>
+                ) : (
+                  <div key={key} className={className}>{content}</div>
+                );
+              })}
             </motion.div>
           </div>
         </div>
