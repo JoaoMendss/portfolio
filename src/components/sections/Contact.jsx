@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next';
 const FORMSPREE_ID = 'xkokpkwr';
 
 const SERVICES = [
-  { key: '1', cmd: 'send-email',    value: 'joaoluiizmendes@gmail.com',    href: null,  email: true },
-  { key: '2', cmd: 'open-linkedin', value: 'linkedin.com/in/joaolcmendes', href: 'https://www.linkedin.com/in/joaolcmendes/' },
-  { key: '3', cmd: 'view-github',   value: 'github.com/JoaoMendss',        href: 'https://github.com/JoaoMendss' },
-  { key: '4', cmd: 'get-location',  value: 'Telêmaco Borba, PR — Brasil',  href: null },
+  { key: '1', cmd: 'send-email',    cmdPt: 'enviar-email',   value: 'joaoluiizmendes@gmail.com',    href: null,  email: true },
+  { key: '2', cmd: 'open-linkedin', cmdPt: 'abrir-linkedin', value: 'linkedin.com/in/joaolcmendes', href: 'https://www.linkedin.com/in/joaolcmendes/' },
+  { key: '3', cmd: 'view-github',   cmdPt: 'ver-github',     value: 'github.com/JoaoMendss',        href: 'https://github.com/JoaoMendss' },
+  { key: '4', cmd: 'get-location',  cmdPt: 'localizar',      value: 'Telêmaco Borba, PR — Brasil',  href: null },
 ];
 
 const SSH_CMD = 'ssh joao@portfolio.dev';
@@ -22,36 +22,31 @@ const fadeUp = (delay = 0) => ({
 
 /* ─── SSH Terminal ───────────────────────────────────────── */
 function SSHTerminal({ isEn }) {
-  const [phase,       setPhase]       = useState(0);
-  const [cmdText,     setCmdText]     = useState('');
-  const [barFull,     setBarFull]     = useState(false);
-  const [executed,    setExecuted]    = useState(null);
+  const [phase,      setPhase]      = useState(0);
+  const [cmdText,    setCmdText]    = useState('');
+  const [barFull,    setBarFull]    = useState(false);
+  const [executed,   setExecuted]   = useState(null);
 
-  /* email form state */
-  const [emailPhase,  setEmailPhase]  = useState(null); // null|'name'|'contact'|'message'|'sending'|'done'|'error'
-  const [formData,    setFormData]    = useState({ name: '', contact: '', message: '' });
-  const [fieldDraft,  setFieldDraft]  = useState('');
+  const [emailPhase, setEmailPhase] = useState(null);
+  const [formData,   setFormData]   = useState({ name: '', contact: '', message: '' });
+  const [fieldDraft, setFieldDraft] = useState('');
   const inputRef = useRef(null);
 
   const termRef  = useRef(null);
   const isInView = useInView(termRef, { once: true, margin: '-80px' });
 
-  /* sequence */
   useEffect(() => {
     if (!isInView) return;
     const timers = [];
     const delay  = (fn, ms) => timers.push(setTimeout(fn, ms));
-
     setPhase(1);
     delay(() => { setPhase(2); setTimeout(() => setBarFull(true), 60); }, 1500);
     delay(() => setPhase(3), 3000);
     delay(() => setPhase(4), 3600);
     delay(() => setPhase(5), 4200);
-
     return () => timers.forEach(clearTimeout);
   }, [isInView]);
 
-  /* typewriter */
   useEffect(() => {
     if (phase !== 1) return;
     let i = 0;
@@ -63,7 +58,6 @@ function SSHTerminal({ isEn }) {
     return () => clearInterval(t);
   }, [phase]);
 
-  /* keyboard nav — desativado durante email mode */
   useEffect(() => {
     if (phase < 5 || emailPhase) return;
     const onKey = (e) => {
@@ -74,7 +68,6 @@ function SSHTerminal({ isEn }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [phase, emailPhase]);
 
-  /* foca o input quando muda de fase do email */
   useEffect(() => {
     if (emailPhase && !['sending', 'done', 'error'].includes(emailPhase)) {
       setTimeout(() => inputRef.current?.focus(), 60);
@@ -82,6 +75,13 @@ function SSHTerminal({ isEn }) {
   }, [emailPhase]);
 
   /* ── handlers ── */
+  const handleCancel = () => {
+    setEmailPhase(null);
+    setFormData({ name: '', contact: '', message: '' });
+    setFieldDraft('');
+    setExecuted(null);
+  };
+
   const handleSelect = (service) => {
     setExecuted(service);
     if (service.email) {
@@ -99,11 +99,7 @@ function SSHTerminal({ isEn }) {
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: data.name,
-          _replyto: data.contact,
-          message: data.message,
-        }),
+        body: JSON.stringify({ name: data.name, _replyto: data.contact, message: data.message }),
       });
       setEmailPhase(res.ok ? 'done' : 'error');
     } catch {
@@ -112,15 +108,10 @@ function SSHTerminal({ isEn }) {
   };
 
   const handleFieldKey = (e) => {
-    /* Ctrl+C ou Escape = cancelar */
     if (e.key === 'Escape' || (e.ctrlKey && e.key === 'c')) {
-      setEmailPhase(null);
-      setFormData({ name: '', contact: '', message: '' });
-      setFieldDraft('');
-      setExecuted(null);
+      handleCancel();
       return;
     }
-
     if (e.key !== 'Enter') return;
     const val = fieldDraft.trim();
     if (!val) return;
@@ -151,11 +142,12 @@ function SSHTerminal({ isEn }) {
     hint: 'Click or press [1–4] to connect.',
     opening: 'opening',
     fields: { name: 'name', contact: 'email/tel', message: 'message' },
-    cancel: 'esc or ^C to cancel',
+    enter: 'press enter to confirm',
+    cancel: 'cancel',
     sending: 'Sending',
     mailDone: "Message sent! I'll get back to you soon.",
     mailErr: 'Error sending. Please try again.',
-    enter: 'press enter to confirm',
+    retry: 'retry',
   } : {
     connecting: 'Connecting to portfolio.dev',
     done: 'done', auth: 'Authenticating...', authed: '✓ authenticated',
@@ -165,17 +157,20 @@ function SSHTerminal({ isEn }) {
     hint: 'Clique ou pressione [1–4] para conectar.',
     opening: 'abrindo',
     fields: { name: 'nome', contact: 'email/tel', message: 'mensagem' },
-    cancel: 'esc ou ^C para cancelar',
+    enter: 'pressione enter para confirmar',
+    cancel: 'cancelar',
     sending: 'Enviando',
     mailDone: 'Mensagem enviada! Entrarei em contato em breve.',
     mailErr: 'Erro ao enviar. Tente novamente.',
-    enter: 'pressione enter para confirmar',
+    retry: 'tentar novamente',
   };
 
   const currentFieldLabel = emailPhase === 'name'    ? L.fields.name
                           : emailPhase === 'contact'  ? L.fields.contact
                           : emailPhase === 'message'  ? L.fields.message
                           : null;
+
+  const getCmd = (service) => isEn ? service.cmd : service.cmdPt;
 
   return (
     <div ref={termRef} className="rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl w-full">
@@ -224,7 +219,7 @@ function SSHTerminal({ isEn }) {
           </motion.div>
         )}
 
-        {/* ── Menu ou Email mode ── */}
+        {/* ── Menu ── */}
         {phase >= 5 && !emailPhase && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="pt-1 space-y-4">
             <div className="border-t border-zinc-800/80 pt-4 space-y-0.5">
@@ -239,7 +234,7 @@ function SSHTerminal({ isEn }) {
                   className="w-full flex items-start sm:items-center gap-3 py-1.5 px-2 rounded-lg hover:bg-zinc-800/50 group transition-colors text-left"
                 >
                   <span className="text-blue-500 flex-shrink-0">[{service.key}]</span>
-                  <span className="text-zinc-400 flex-shrink-0 group-hover:text-zinc-100 transition-colors">{service.cmd}</span>
+                  <span className="text-zinc-400 flex-shrink-0 group-hover:text-zinc-100 transition-colors">{getCmd(service)}</span>
                   <span className="text-zinc-600 text-xs truncate group-hover:text-zinc-400 transition-colors sm:ml-auto">{service.value}</span>
                 </motion.button>
               ))}
@@ -257,14 +252,23 @@ function SSHTerminal({ isEn }) {
         {phase >= 5 && emailPhase && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-1 space-y-2 border-t border-zinc-800/80">
 
-            {/* comando executado */}
-            <p className="pt-3">
-              <span className="text-emerald-500">joao@portfolio</span>
-              <span className="text-zinc-700">:~$</span>
-              {' '}<span className="text-zinc-400">connect send-email</span>
-            </p>
+            <div className="flex items-center justify-between pt-3">
+              <p>
+                <span className="text-emerald-500">joao@portfolio</span>
+                <span className="text-zinc-700">:~$</span>
+                {' '}<span className="text-zinc-400">connect {getCmd(SERVICES[0])}</span>
+              </p>
+              {/* Botão cancelar — visível sempre, essencial no mobile */}
+              {!['sending', 'done', 'error'].includes(emailPhase) && (
+                <button
+                  onClick={handleCancel}
+                  className="text-zinc-600 hover:text-red-400 text-xs transition-colors flex-shrink-0 ml-4 px-2 py-1 rounded border border-zinc-800 hover:border-red-400/40"
+                >
+                  × {L.cancel}
+                </button>
+              )}
+            </div>
 
-            {/* campos já preenchidos */}
             {formData.name && (
               <p className="text-xs">
                 <span className="text-blue-400">{L.fields.name}:</span>
@@ -284,7 +288,6 @@ function SSHTerminal({ isEn }) {
               </p>
             )}
 
-            {/* campo atual sendo digitado */}
             {currentFieldLabel && (
               <div className="flex items-center gap-2">
                 <span className="text-blue-400 text-xs flex-shrink-0">{currentFieldLabel}:</span>
@@ -300,14 +303,10 @@ function SSHTerminal({ isEn }) {
               </div>
             )}
 
-            {/* dicas */}
             {currentFieldLabel && (
-              <p className="text-zinc-700 text-[11px]">
-                {L.enter} &nbsp;·&nbsp; {L.cancel}
-              </p>
+              <p className="text-zinc-700 text-[11px]">{L.enter}</p>
             )}
 
-            {/* estados de envio */}
             {emailPhase === 'sending' && (
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-zinc-500 text-xs">
                 {L.sending}<span className="animate-pulse">...</span>
@@ -330,7 +329,7 @@ function SSHTerminal({ isEn }) {
                   onClick={() => { setEmailPhase('name'); setFormData({ name: '', contact: '', message: '' }); }}
                   className="text-zinc-600 text-xs hover:text-zinc-300 transition-colors"
                 >
-                  [retry]
+                  [{L.retry}]
                 </button>
               </motion.div>
             )}
@@ -348,7 +347,7 @@ function SSHTerminal({ isEn }) {
               <p className="text-zinc-400">
                 <span className="text-emerald-500">joao@portfolio</span>
                 <span className="text-zinc-700">:~$</span>
-                {' '}connect {executed.cmd}
+                {' '}connect {getCmd(executed)}
               </p>
               {executed.href ? (
                 <p className="text-zinc-600 text-xs">
