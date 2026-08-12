@@ -16,8 +16,8 @@ const PROJECTS = [
     desc_en: 'Complete booking system for a beach tennis, volleyball and footvolley arena — with user panel, admin panel, and integrated payments.',
     about_pt: 'Projeto desenvolvido em parceria com meu irmão para a Podium Arena, em Telêmaco Borba (PR). É uma plataforma completa de reservas de quadras com painel do usuário (histórico de reservas, Arena Credits, próximos agendamentos) e painel administrativo (gestão de quadras, horários, relatórios de pagamento). Os usuários podem pagar via Pix, cartão de crédito ou usar Arena Credits — créditos internos da arena.',
     about_en: 'Project built with my brother for Podium Arena, in Telêmaco Borba, Brazil. A complete court booking platform with a user panel (booking history, Arena Credits, upcoming schedules) and an admin panel (court management, schedules, payment reports). Users can pay via Pix, credit card, or Arena Credits — the arena\'s internal credit system.',
-    how_pt: 'Frontend em React + Vite com React Router DOM para roteamento. Backend RESTful em Node.js/Express com MongoDB e Mongoose. Autenticação via JWT e login social com Google OAuth. Pagamentos integrados ao MercadoPago (Pix e cartão). Sistema de Arena Credits gerenciado no próprio banco. Frontend hospedado na Vercel e backend no Render.',
-    how_en: 'Frontend in React + Vite with React Router DOM for routing. RESTful backend in Node.js/Express with MongoDB and Mongoose. Authentication via JWT and social login with Google OAuth. Payments integrated with MercadoPago (Pix and credit card). Arena Credits system managed in the database. Frontend hosted on Vercel, backend on Render.',
+    how_pt: 'Frontend em React + Vite com React Router DOM para roteamento. Backend RESTful em Node.js/Express com MongoDB e Mongoose. Autenticação via JWT e login social com Google OAuth. Pagamentos integrados ao MercadoPago (Pix e cartão). Sistema de Arena Credits gerenciado no próprio banco.',
+    how_en: 'Frontend in React + Vite with React Router DOM for routing. RESTful backend in Node.js/Express with MongoDB and Mongoose. Authentication via JWT and social login with Google OAuth. Payments integrated with MercadoPago (Pix and credit card). Arena Credits system managed in the database.',
   },
   {
     slug: 'sws-company',
@@ -30,8 +30,8 @@ const PROJECTS = [
     desc_en: 'Official website of the company I co-founded with my brother — Storm Web & Systems, a web development, apps, and systems company.',
     about_pt: 'A SWS (Storm Web & Systems) é uma empresa de tecnologia que fundei com meu irmão. Oferecemos desenvolvimento web, criação de aplicativos e sistemas customizados para empresas. O site institucional apresenta os serviços, portfólio e canais de contato da empresa, com animações fluidas e design profissional.',
     about_en: 'SWS (Storm Web & Systems) is a tech company I co-founded with my brother. We offer web development, app creation, and custom systems for businesses. The institutional site presents the company\'s services, portfolio, and contact channels, with fluid animations and professional design.',
-    how_pt: 'Frontend em React 19 + Vite com GSAP para animações avançadas de scroll e entrada de elementos. React Router DOM v7 para navegação. Backend em Node.js + Express 5 com MongoDB e autenticação JWT. Nodemailer para formulário de contato. Docker para containerização do backend. Deploy do frontend na Vercel.',
-    how_en: 'Frontend in React 19 + Vite with GSAP for advanced scroll and entry animations. React Router DOM v7 for navigation. Node.js + Express 5 backend with MongoDB and JWT authentication. Nodemailer for the contact form. Docker for backend containerization. Frontend deployed on Vercel.',
+    how_pt: 'Frontend em React 19 + Vite com GSAP para animações avançadas de scroll e entrada de elementos. React Router DOM v7 para navegação. Backend em Node.js + Express 5 com MongoDB e autenticação JWT. Nodemailer para formulário de contato. Docker para containerização do backend.',
+    how_en: 'Frontend in React 19 + Vite with GSAP for advanced scroll and entry animations. React Router DOM v7 for navigation. Node.js + Express 5 backend with MongoDB and JWT authentication. Nodemailer for the contact form. Docker for backend containerization.',
   },
   {
     slug: 'smart-collar',
