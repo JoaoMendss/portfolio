@@ -63,6 +63,20 @@ const PROJECTS = [
     how_en: 'Frontend in React 18 + Vite with pure CSS and native SVG charts. Node.js + Express backend with MongoDB and JWT + Google OAuth authentication. AI integrated with Google Gemini (gemini-2.5-flash, free tier) — the system works without the key using rule-based insights. Automatic recurrence system for fixed transactions running server-side.',
   },
   {
+    slug: 'devburger',
+    name: 'DevBurger',
+    type: 'fullstack',
+    status: 'completed',
+    live: null,
+    tech: ['React 19', 'Vite', 'MUI', 'Stripe', 'Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'JWT', 'Multer'],
+    desc_pt: 'Plataforma completa de delivery de hambúrgueres — painel do cliente, painel admin, pagamento com Stripe e autenticação JWT. Feito 100% sem IA.',
+    desc_en: 'Complete burger delivery platform — customer panel, admin panel, Stripe payment, and JWT auth. Built 100% without AI.',
+    about_pt: 'O DevBurger foi o projeto que me deu base para quase tudo que sei hoje. Desenvolvido do zero, sem nenhum apoio de IA, para treinar as habilidades de fullstack no mundo real. Tem dois painéis completos — o cliente navega o cardápio, monta o pedido e paga com cartão via Stripe; o admin gerencia produtos, categorias, pedidos e upload de imagens. Foi aqui que aprendi de verdade sobre segurança, arquitetura de API e estratégia de desenvolvimento.',
+    about_en: 'DevBurger was the project that gave me the foundation for almost everything I know today. Built from scratch, without any AI assistance, to train real-world fullstack skills. It has two complete panels — customers browse the menu, build their order, and pay by card via Stripe; admins manage products, categories, orders, and image uploads. This is where I really learned about security, API architecture, and development strategy.',
+    how_pt: 'Frontend em React 19 + Vite com Material UI v7 e Styled Components. Formulários com React Hook Form + Yup. Pagamentos com Stripe. Backend em Node.js + Express 5 com dois bancos: PostgreSQL via Sequelize (usuários, produtos, categorias) e MongoDB via Mongoose (pedidos). Upload de imagens com Multer. Autenticação com JWT + bcrypt. Dois repos separados — interface e API.',
+    how_en: 'Frontend in React 19 + Vite with Material UI v7 and Styled Components. Forms with React Hook Form + Yup. Payments with Stripe. Node.js + Express 5 backend with two databases: PostgreSQL via Sequelize (users, products, categories) and MongoDB via Mongoose (orders). Image uploads with Multer. Authentication with JWT + bcrypt. Two separate repos — interface and API.',
+  },
+  {
     slug: 'currency-converter',
     name: 'Currency Converter',
     type: 'frontend',
@@ -466,6 +480,38 @@ function SmartFinanceCard({ project, onClick, isEn, delay }) {
   );
 }
 
+function DevBurgerCard({ project, onClick, isEn, delay }) {
+  return (
+    <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }}>
+      <Terminal path="~/projects/devburger" onClick={onClick} className="h-full">
+        <Prompt cmd="curl /api/orders/new" />
+        <div className="space-y-1 mt-1">
+          {[
+            ['X-Burger',     '2x', 'R$ 34,90'],
+            ['Batata Frita', '1x', 'R$ 14,90'],
+            ['Coca-Cola',    '2x', 'R$  9,90'],
+          ].map(([item, qty, price]) => (
+            <p key={item} className="flex gap-2 text-[11px]">
+              <span className="text-zinc-400 flex-1">{item}</span>
+              <span className="text-zinc-600">{qty}</span>
+              <span className="text-emerald-400">{price}</span>
+            </p>
+          ))}
+          <p className="text-zinc-600 text-[11px] pt-1 border-t border-zinc-800/60">
+            total: <span className="text-zinc-300">R$ 69,60</span>
+            {'  '}payment: <span className="text-blue-400">Stripe ✓</span>
+          </p>
+        </div>
+        <p className="text-zinc-600">&gt; <span className="text-zinc-500">fullstack</span> · <span className="text-emerald-400">completed</span></p>
+        <div className="pt-2 mt-auto border-t border-zinc-800/60 flex items-center justify-between">
+          <LiveLink href={project.live} isEn={isEn} />
+          <span className="text-zinc-700 text-[10px]">{isEn ? 'no AI used' : 'sem IA'}</span>
+        </div>
+      </Terminal>
+    </motion.div>
+  );
+}
+
 function CurrencyCard({ project, onClick, delay }) {
   return (
     <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }}>
@@ -567,9 +613,10 @@ export default function Projects() {
           <PodiumArenaCard project={p('podium-arena')}        onClick={() => setSelected(p('podium-arena'))}        isEn={isEn}  delay={0.06} />
           <SmartCollarCard project={p('smart-collar')}        onClick={() => setSelected(p('smart-collar'))}                     delay={0.10} />
           <SmartFinanceCard project={p('smart-finance')}       onClick={() => setSelected(p('smart-finance'))}      isEn={isEn}  delay={0.14} />
-          <CurrencyCard    project={p('currency-converter')}  onClick={() => setSelected(p('currency-converter'))}               delay={0.18} />
-          <GamesCard       project={p('js-games')}            onClick={() => setSelected(p('js-games'))}                         delay={0.22} />
-          <UILabCard       project={p('ui-lab')}              onClick={() => setSelected(p('ui-lab'))}              isEn={isEn}  delay={0.26} />
+          <DevBurgerCard   project={p('devburger')}           onClick={() => setSelected(p('devburger'))}           isEn={isEn}  delay={0.18} />
+          <CurrencyCard    project={p('currency-converter')}  onClick={() => setSelected(p('currency-converter'))}               delay={0.22} />
+          <GamesCard       project={p('js-games')}            onClick={() => setSelected(p('js-games'))}                         delay={0.26} />
+          <UILabCard       project={p('ui-lab')}              onClick={() => setSelected(p('ui-lab'))}              isEn={isEn}  delay={0.30} />
         </div>
       </div>
 
