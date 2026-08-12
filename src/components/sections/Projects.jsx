@@ -91,20 +91,6 @@ const PROJECTS = [
     how_en: 'Integrates with ExchangeRate API for up-to-date rates on each call. Local cache via localStorage to reduce repeated requests. Vanilla JavaScript with fetch API and framework-free DOM manipulation.',
   },
   {
-    slug: 'js-games',
-    name: 'JS Games',
-    type: 'frontend',
-    status: 'ongoing',
-    live: null,
-    tech: ['JavaScript', 'Canvas API', 'HTML5'],
-    desc_pt: 'Coleção de jogos browser com JavaScript puro — lógica, arcade e física.',
-    desc_en: 'Collection of browser games with pure JavaScript — logic, arcade, and physics.',
-    about_pt: 'Projeto de estudo contínuo de algoritmos e física 2D no browser. Snake e Tetris já completos com sistema de score e níveis. Pong com IA simples. Sistema de física para platformer em desenvolvimento.',
-    about_en: 'Ongoing study project for algorithms and 2D physics in the browser. Snake and Tetris complete with scoring and levels. Pong with basic AI. Physics engine for a platformer in development.',
-    how_pt: 'Cada jogo é um módulo independente com seu próprio game loop usando requestAnimationFrame. Física implementada do zero — vetores 2D, detecção de colisão AABB e resposta a colisão. Canvas API para renderização a 60fps.',
-    how_en: 'Each game is an independent module with its own game loop using requestAnimationFrame. Physics implemented from scratch — 2D vectors, AABB collision detection, and collision response. Canvas API for 60fps rendering.',
-  },
-  {
     slug: 'ui-lab',
     name: 'UI Lab',
     type: 'frontend',
@@ -531,25 +517,6 @@ function CurrencyCard({ project, onClick, delay }) {
   );
 }
 
-function GamesCard({ project, onClick, delay }) {
-  return (
-    <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }}>
-      <Terminal path="~/projects/js-games" onClick={onClick} className="h-full">
-        <Prompt cmd="ls games/" />
-        <div className="space-y-1 mt-1">
-          {[['snake.js','done'],['tetris.js','done'],['pong.js','wip'],['physics.js','wip']].map(([file, st]) => (
-            <p key={file} className="flex justify-between">
-              <span className="text-zinc-400">{file}</span>
-              <span className={st === 'done' ? 'text-emerald-400' : 'text-blue-400'}>{st === 'done' ? '✓ done' : '~ wip'}</span>
-            </p>
-          ))}
-        </div>
-        <p className="text-zinc-600">&gt; <span className="text-zinc-500">frontend</span> · <span className="text-blue-400">ongoing</span></p>
-        <LiveLink href={project.live} />
-      </Terminal>
-    </motion.div>
-  );
-}
 
 function UILabCard({ project, onClick, isEn, delay }) {
   const entries = isEn
@@ -615,8 +582,7 @@ export default function Projects() {
           <SmartFinanceCard project={p('smart-finance')}       onClick={() => setSelected(p('smart-finance'))}      isEn={isEn}  delay={0.14} />
           <DevBurgerCard   project={p('devburger')}           onClick={() => setSelected(p('devburger'))}           isEn={isEn}  delay={0.18} />
           <CurrencyCard    project={p('currency-converter')}  onClick={() => setSelected(p('currency-converter'))}               delay={0.22} />
-          <GamesCard       project={p('js-games')}            onClick={() => setSelected(p('js-games'))}                         delay={0.26} />
-          <UILabCard       project={p('ui-lab')}              onClick={() => setSelected(p('ui-lab'))}              isEn={isEn}  delay={0.30} />
+<UILabCard       project={p('ui-lab')}              onClick={() => setSelected(p('ui-lab'))}              isEn={isEn}  delay={0.30} />
         </div>
       </div>
 
