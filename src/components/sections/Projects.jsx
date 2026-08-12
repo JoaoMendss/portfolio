@@ -326,26 +326,61 @@ function PodiumArenaCard({ project, onClick, isEn, delay }) {
 }
 
 function SWSCard({ project, onClick, isEn, delay }) {
+  const services = isEn ? [
+    ['[web]',    'Web Development',   'landing pages · web apps · e-commerce'],
+    ['[mobile]', 'Mobile Apps',       'iOS · Android · React Native'],
+    ['[sys]',    'Custom Systems',    'APIs · dashboards · automation'],
+    ['[design]', 'UI/UX & Branding',  'interfaces · identity · prototyping'],
+  ] : [
+    ['[web]',    'Desenvolvimento Web',    'landing pages · web apps · e-commerce'],
+    ['[mobile]', 'Aplicativos Mobile',    'iOS · Android · React Native'],
+    ['[sys]',    'Sistemas Customizados', 'APIs · dashboards · automação'],
+    ['[design]', 'UI/UX & Branding',      'interfaces · identidade · prototipagem'],
+  ];
+
   return (
     <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }} className="md:col-span-2 lg:col-span-3">
       <Terminal path="~/projects/sws-company" onClick={onClick} className="h-full">
-        <Prompt cmd={`curl swscompany.com.br/api/info`} />
-        <div className="space-y-1.5 mt-1">
-          <p className="text-zinc-600 text-[11px]">&gt; 200 OK</p>
-          {[
-            [isEn ? 'name'    : 'nome',    'Storm Web & Systems'],
-            [isEn ? 'role'    : 'cargo',   isEn ? 'co-founder' : 'co-fundador'],
-            [isEn ? 'type'    : 'tipo',    isEn ? 'software company' : 'empresa de software'],
-            ['stack',                       'React 19 · GSAP · Express 5'],
-            ['status',                      '● active'],
-          ].map(([k, v]) => (
-            <p key={k} className="flex gap-2 text-[11px]">
-              <span className="text-blue-400 w-16 flex-shrink-0">"{k}":</span>
-              <span className={k === 'status' ? 'text-emerald-400' : 'text-zinc-300'}>"{v}"</span>
-            </p>
-          ))}
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-3">
+
+          {/* Esquerda — curl info */}
+          <div className="space-y-2.5">
+            <Prompt cmd="curl swscompany.com.br/api/info" />
+            <div className="space-y-1.5">
+              <p className="text-zinc-600 text-[11px]">&gt; 200 OK</p>
+              {[
+                [isEn ? 'name'  : 'nome',  'Storm Web & Systems'],
+                [isEn ? 'role'  : 'cargo', isEn ? 'co-founder' : 'co-fundador'],
+                [isEn ? 'type'  : 'tipo',  isEn ? 'software company' : 'empresa de software'],
+                ['stack',                   'React 19 · GSAP · Express 5'],
+                ['status',                  '● active'],
+              ].map(([k, v]) => (
+                <p key={k} className="flex gap-2 text-[11px]">
+                  <span className="text-blue-400 w-16 flex-shrink-0">"{k}":</span>
+                  <span className={k === 'status' ? 'text-emerald-400' : 'text-zinc-300'}>"{v}"</span>
+                </p>
+              ))}
+            </div>
+            <LiveLink href={project.live} isEn={isEn} />
+          </div>
+
+          {/* Direita — serviços */}
+          <div className="space-y-2.5">
+            <Prompt cmd="cat services.md" />
+            <div className="space-y-2.5">
+              {services.map(([tag, title, desc]) => (
+                <div key={tag} className="space-y-0.5">
+                  <p className="text-[11px]">
+                    <span className="text-yellow-400/80">{tag}</span>
+                    <span className="text-zinc-200 ml-2 font-medium">{title}</span>
+                  </p>
+                  <p className="text-zinc-600 text-[10px] pl-7">{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
-        <LiveLink href={project.live} isEn={isEn} />
       </Terminal>
     </motion.div>
   );
