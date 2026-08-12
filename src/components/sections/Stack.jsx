@@ -140,7 +140,7 @@ function RobotBubble({ isEn, onTalk }) {
       initial={{ opacity: 0, y: -10, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: 1.4, type: 'spring', stiffness: 220, damping: 22 }}
-      className="absolute -top-2 left-4 z-10 max-w-[210px]"
+      className="absolute -top-2 left-4 md:left-[28%] z-10 max-w-[210px]"
     >
       {/* Bubble */}
       <div className="relative bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl rounded-br-none px-4 py-3.5 shadow-xl">
@@ -233,14 +233,14 @@ export default function Stack() {
           </div>
 
           {/* Spline 3D + speech bubble */}
-          <motion.div {...fadeUp(0.2)} className="lg:sticky lg:top-24 h-[340px] lg:h-[580px] relative">
+          <motion.div {...fadeUp(0.2)} className="lg:sticky lg:top-24 h-[340px] md:h-[460px] lg:h-[580px] relative">
             <RobotBubble
               key={isEn ? 'en' : 'pt'}
               isEn={isEn}
               onTalk={() => setModalOpen(true)}
             />
 
-            <div className="absolute inset-0 pt-14 lg:pt-0">
+            <div className="absolute inset-0 pt-14 md:pt-8 lg:pt-0">
               <SplineScene
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                 className="w-full h-full"
