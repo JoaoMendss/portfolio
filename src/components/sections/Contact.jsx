@@ -6,7 +6,7 @@ const FORMSPREE_ID = 'xkokpkwr';
 
 const SERVICES = [
   { key: '1', cmd: 'send-email',    cmdPt: 'enviar-email',   value: 'joaoluiizmendes@gmail.com',    href: null,  email: true },
-  { key: '2', cmd: 'open-linkedin', cmdPt: 'abrir-linkedin', value: 'linkedin.com/in/joaolcmendes', href: 'https://www.linkedin.com/in/joaolcmendes/' },
+  { key: '2', cmd: 'open-linkedin', cmdPt: 'abrir-linkedin', value: 'linkedin.com/in/joaomendss', href: 'https://www.linkedin.com/in/joaomendss/' },
   { key: '3', cmd: 'view-github',   cmdPt: 'ver-github',     value: 'github.com/JoaoMendss',        href: 'https://github.com/JoaoMendss' },
   { key: '4', cmd: 'get-location',  cmdPt: 'localizar',      value: 'Telêmaco Borba, PR — Brasil',  href: null },
 ];
