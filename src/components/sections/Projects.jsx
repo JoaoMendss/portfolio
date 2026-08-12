@@ -90,6 +90,21 @@ const PROJECTS = [
     how_pt: 'Integração com ExchangeRate API para taxas atualizadas a cada chamada. Cache local via localStorage para reduzir requisições repetidas. JavaScript vanilla com fetch API e manipulação de DOM sem framework.',
     how_en: 'Integrates with ExchangeRate API for up-to-date rates on each call. Local cache via localStorage to reduce repeated requests. Vanilla JavaScript with fetch API and framework-free DOM manipulation.',
   },
+  {
+    slug: 'forja-cli',
+    name: 'Forja CLI',
+    type: 'cli',
+    status: 'completed',
+    live: 'https://www.npmjs.com/package/create-forja-app',
+    github: 'https://github.com/JoaoMendss/forja-cli',
+    tech: ['Node.js', 'Commander', 'Chalk', 'Ora', 'Prompts', 'fs-extra', 'npm'],
+    desc_pt: 'CLI publicada no npm para gerar projetos fullstack prontos — React + Vite + Express + MongoDB em segundos, sem nenhuma configuração.',
+    desc_en: 'npm CLI to scaffold ready-to-run fullstack projects — React + Vite + Express + MongoDB in seconds, zero config.',
+    about_pt: 'O Forja CLI (create-forja-app) é uma ferramenta de linha de comando publicada no npm que gera projetos fullstack prontos para rodar com um único comando. Suporta três templates — fullstack (React + Vite + Express + MongoDB), frontend (React + Vite) e api (Express + MongoDB). Inicializa git automaticamente com o primeiro commit, instala as dependências e funciona com npm, yarn e pnpm. Roda em Windows, macOS e Linux.',
+    about_en: 'Forja CLI (create-forja-app) is a command-line tool published on npm that scaffolds production-ready projects in a single command. Supports three templates — fullstack (React + Vite + Express + MongoDB), frontend (React + Vite), and api (Express + MongoDB). Automatically initializes git with the first commit, installs dependencies, and supports npm, yarn, and pnpm. Works on Windows, macOS, and Linux.',
+    how_pt: 'Construído em Node.js (ESM) com Commander.js para parsing de flags e subcomandos, Prompts para o fluxo interativo de perguntas, Chalk para output colorido no terminal, Ora para os spinners de loading, e fs-extra para copiar os arquivos dos templates. Os templates são arquivos estáticos empacotados dentro do pacote npm.',
+    how_en: 'Built in Node.js (ESM) with Commander.js for flag and subcommand parsing, Prompts for the interactive question flow, Chalk for colorful terminal output, Ora for loading spinners, and fs-extra to copy template files. Templates are static files bundled inside the npm package.',
+  },
 ];
 
 const statusColor = {
@@ -502,6 +517,85 @@ function CurrencyCard({ project, onClick, delay }) {
 
 
 
+function ForjaCLICard({ project, onClick, isEn, delay }) {
+  const templates = [
+    { name: 'fullstack', stack: 'React + Vite + Express + MongoDB', active: true },
+    { name: 'frontend',  stack: 'React + Vite',                    active: false },
+    { name: 'api',       stack: 'Express + MongoDB',               active: false },
+  ];
+
+  const features = isEn ? [
+    'Three templates: fullstack · frontend · api',
+    'Auto git init + first commit',
+    'npm · yarn · pnpm support',
+    'Works on Windows, macOS and Linux',
+  ] : [
+    'Três templates: fullstack · frontend · api',
+    'Git inicializado + primeiro commit automático',
+    'Suporte a npm · yarn · pnpm',
+    'Funciona em Windows, macOS e Linux',
+  ];
+
+  return (
+    <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }} className="md:col-span-2 lg:col-span-3">
+      <Terminal path="~/projects/forja-cli" onClick={onClick} className="h-full">
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-3">
+
+          {/* Esquerda — CLI interativo */}
+          <div className="space-y-2.5">
+            <Prompt cmd="npx create-forja-app" />
+            <div className="space-y-1.5">
+              <p className="text-zinc-400 text-[11px]">
+                ? {isEn ? 'Project name' : 'Nome do projeto'}: <span className="text-emerald-400">meu-projeto</span>
+              </p>
+              <p className="text-zinc-400 text-[11px]">? Template:</p>
+              {templates.map((t) => (
+                <p key={t.name} className="flex items-center gap-2 text-[11px] pl-2">
+                  <span className={t.active ? 'text-blue-400' : 'text-zinc-700'}>{t.active ? '●' : '○'}</span>
+                  <span className={t.active ? 'text-zinc-200' : 'text-zinc-600'}>{t.name}</span>
+                  <span className={t.active ? 'text-zinc-500' : 'text-zinc-700'}>{t.stack}</span>
+                </p>
+              ))}
+            </div>
+            <div className="space-y-1 text-[11px]">
+              <p><span className="text-emerald-400">✓</span> <span className="text-zinc-400">{isEn ? 'scaffolding project...' : 'gerando projeto...'}</span></p>
+              <p><span className="text-emerald-400">✓</span> <span className="text-zinc-400">git init</span></p>
+              <p><span className="text-emerald-400">✓</span> <span className="text-zinc-400">npm install</span> <span className="text-zinc-600">done in 3.2s</span></p>
+            </div>
+          </div>
+
+          {/* Direita — features */}
+          <div className="space-y-2.5">
+            <Prompt cmd="cat README.md" />
+            <p className="text-zinc-100 text-[11px] font-medium"># create-forja-app</p>
+            <div className="space-y-1.5 text-[11px]">
+              {features.map((line, i) => (
+                <p key={i} className="flex gap-2">
+                  <span className="text-emerald-400 flex-shrink-0">-</span>
+                  <span className="text-zinc-400">{line}</span>
+                </p>
+              ))}
+            </div>
+            <p className="text-zinc-600 text-[11px] mt-1">
+              <span className="text-blue-500">$</span> npm i -g create-forja-app
+            </p>
+          </div>
+
+        </div>
+        <div className="pt-2 mt-auto border-t border-zinc-800/60 flex items-center gap-4 text-xs flex-wrap">
+          <a href={project.live} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-blue-400 hover:text-blue-300 transition-colors">
+            [↗ npm]
+          </a>
+          <a href={project.github} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-zinc-500 hover:text-zinc-200 transition-colors">
+            [↗ github]
+          </a>
+          <span className="text-zinc-700 text-[10px] ml-auto">cli · <span className="text-emerald-400">published</span></span>
+        </div>
+      </Terminal>
+    </motion.div>
+  );
+}
+
 /* ─── Section ────────────────────────────────────────────── */
 export default function Projects() {
   const { t, i18n } = useTranslation();
@@ -530,6 +624,7 @@ export default function Projects() {
           <SmartFinanceCard project={p('smart-finance')}       onClick={() => setSelected(p('smart-finance'))}      isEn={isEn}  delay={0.14} />
           <DevBurgerCard   project={p('devburger')}           onClick={() => setSelected(p('devburger'))}           isEn={isEn}  delay={0.18} />
           <CurrencyCard    project={p('currency-converter')}  onClick={() => setSelected(p('currency-converter'))}               delay={0.22} />
+          <ForjaCLICard    project={p('forja-cli')}           onClick={() => setSelected(p('forja-cli'))}           isEn={isEn}  delay={0.26} />
         </div>
       </div>
 
