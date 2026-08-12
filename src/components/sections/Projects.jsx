@@ -53,6 +53,7 @@ const PROJECTS = [
     type: 'fullstack',
     status: 'ongoing',
     live: null,
+    github: 'https://github.com/JoaoMendss/smart-finance',
     tech: ['React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'Google Gemini', 'JWT'],
     desc_pt: 'TCC — sistema de gestão financeira pessoal com o Fin, assistente de IA que analisa receitas, despesas e metas e conversa com você por chat.',
     desc_en: 'Final project — personal finance management system with Fin, an AI assistant that analyzes income, expenses, and goals and chats with you.',
@@ -217,18 +218,23 @@ function ProjectModal({ project, onClose, isEn }) {
                   </div>
                 </div>
 
-                {project.live && (
+                {(project.live || project.github) && (
                   <>
                     <div className="border-t border-zinc-800/60" />
-                    <div className="flex items-center gap-4 text-xs">
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 transition-colors"
-                      >
-                        [↗ {liveLabel}]
-                      </a>
+                    <div className="flex items-center gap-4 text-xs flex-wrap">
+                      {project.live && (
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
+                          [↗ {liveLabel}]
+                        </a>
+                      )}
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-zinc-200 transition-colors">
+                          [↗ github]
+                        </a>
+                      )}
+                      {!project.live && project.github && (
+                        <span className="text-yellow-400/70">{isEn ? '⚡ production deploy coming soon' : '⚡ deploy em produção em breve'}</span>
+                      )}
                     </div>
                   </>
                 )}
@@ -439,7 +445,18 @@ function SmartFinanceCard({ project, onClick, isEn, delay }) {
           </p>
         </div>
         <p className="text-zinc-600">&gt; <span className="text-zinc-500">fullstack</span> · <span className="text-blue-400">ongoing</span> · <span className="text-yellow-400/80">TCC</span></p>
-        <LiveLink href={project.live} isEn={isEn} />
+        <div className="pt-2 mt-auto border-t border-zinc-800/60 flex items-center justify-between">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="text-zinc-500 hover:text-zinc-200 transition-colors"
+          >
+            [↗ github]
+          </a>
+          <span className="text-yellow-400/60 text-[10px]">{isEn ? '⚡ deploy soon' : '⚡ deploy em breve'}</span>
+        </div>
       </Terminal>
     </motion.div>
   );
