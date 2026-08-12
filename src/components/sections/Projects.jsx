@@ -20,6 +20,20 @@ const PROJECTS = [
     how_en: 'Frontend in React + Vite with React Router DOM for routing. RESTful backend in Node.js/Express with MongoDB and Mongoose. Authentication via JWT and social login with Google OAuth. Payments integrated with MercadoPago (Pix and credit card). Arena Credits system managed in the database. Frontend hosted on Vercel, backend on Render.',
   },
   {
+    slug: 'sws-company',
+    name: 'SWS Company',
+    type: 'fullstack',
+    status: 'ongoing',
+    live: 'https://swscompany.com.br',
+    tech: ['React 19', 'Vite', 'GSAP', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Docker'],
+    desc_pt: 'Site oficial da empresa que co-fundei com meu irmão — Storm Web & Systems, empresa de desenvolvimento web, apps e sistemas.',
+    desc_en: 'Official website of the company I co-founded with my brother — Storm Web & Systems, a web development, apps, and systems company.',
+    about_pt: 'A SWS (Storm Web & Systems) é uma empresa de tecnologia que fundei com meu irmão. Oferecemos desenvolvimento web, criação de aplicativos e sistemas customizados para empresas. O site institucional apresenta os serviços, portfólio e canais de contato da empresa, com animações fluidas e design profissional.',
+    about_en: 'SWS (Storm Web & Systems) is a tech company I co-founded with my brother. We offer web development, app creation, and custom systems for businesses. The institutional site presents the company\'s services, portfolio, and contact channels, with fluid animations and professional design.',
+    how_pt: 'Frontend em React 19 + Vite com GSAP para animações avançadas de scroll e entrada de elementos. React Router DOM v7 para navegação. Backend em Node.js + Express 5 com MongoDB e autenticação JWT. Nodemailer para formulário de contato. Docker para containerização do backend. Deploy do frontend na Vercel.',
+    how_en: 'Frontend in React 19 + Vite with GSAP for advanced scroll and entry animations. React Router DOM v7 for navigation. Node.js + Express 5 backend with MongoDB and JWT authentication. Nodemailer for the contact form. Docker for backend containerization. Frontend deployed on Vercel.',
+  },
+  {
     slug: 'smart-collar',
     name: 'Smart Collar',
     type: 'fullstack',
@@ -311,6 +325,32 @@ function PodiumArenaCard({ project, onClick, isEn, delay }) {
   );
 }
 
+function SWSCard({ project, onClick, isEn, delay }) {
+  return (
+    <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }} className="lg:col-span-2">
+      <Terminal path="~/projects/sws-company" onClick={onClick} className="h-full">
+        <Prompt cmd={`curl swscompany.com.br/api/info`} />
+        <div className="space-y-1.5 mt-1">
+          <p className="text-zinc-600 text-[11px]">&gt; 200 OK</p>
+          {[
+            [isEn ? 'name'    : 'nome',    'Storm Web & Systems'],
+            [isEn ? 'role'    : 'cargo',   isEn ? 'co-founder' : 'co-fundador'],
+            [isEn ? 'type'    : 'tipo',    isEn ? 'software company' : 'empresa de software'],
+            ['stack',                       'React 19 · GSAP · Express 5'],
+            ['status',                      '● active'],
+          ].map(([k, v]) => (
+            <p key={k} className="flex gap-2 text-[11px]">
+              <span className="text-blue-400 w-16 flex-shrink-0">"{k}":</span>
+              <span className={k === 'status' ? 'text-emerald-400' : 'text-zinc-300'}>"{v}"</span>
+            </p>
+          ))}
+        </div>
+        <LiveLink href={project.live} isEn={isEn} />
+      </Terminal>
+    </motion.div>
+  );
+}
+
 function SmartCollarCard({ project, onClick, delay }) {
   return (
     <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }}>
@@ -455,12 +495,13 @@ export default function Projects() {
         </motion.p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
-          <PodiumArenaCard project={p('podium-arena')}      onClick={() => setSelected(p('podium-arena'))}      isEn={isEn}  delay={0}    />
-          <SmartCollarCard project={p('smart-collar')}      onClick={() => setSelected(p('smart-collar'))}                   delay={0.06} />
-          <MetaBoostCard   project={p('metaboost')}         onClick={() => setSelected(p('metaboost'))}                      delay={0.10} />
-          <CurrencyCard    project={p('currency-converter')} onClick={() => setSelected(p('currency-converter'))}             delay={0.14} />
-          <GamesCard       project={p('js-games')}          onClick={() => setSelected(p('js-games'))}                       delay={0.18} />
-          <UILabCard       project={p('ui-lab')}            onClick={() => setSelected(p('ui-lab'))}            isEn={isEn}  delay={0.22} />
+          <PodiumArenaCard project={p('podium-arena')}  onClick={() => setSelected(p('podium-arena'))}  isEn={isEn}  delay={0}    />
+          <SmartCollarCard project={p('smart-collar')}  onClick={() => setSelected(p('smart-collar'))}               delay={0.06} />
+          <SWSCard         project={p('sws-company')}   onClick={() => setSelected(p('sws-company'))}   isEn={isEn}  delay={0.10} />
+          <MetaBoostCard   project={p('metaboost')}          onClick={() => setSelected(p('metaboost'))}                       delay={0.14} />
+          <CurrencyCard    project={p('currency-converter')} onClick={() => setSelected(p('currency-converter'))}              delay={0.18} />
+          <GamesCard       project={p('js-games')}           onClick={() => setSelected(p('js-games'))}                        delay={0.22} />
+          <UILabCard       project={p('ui-lab')}             onClick={() => setSelected(p('ui-lab'))}             isEn={isEn}  delay={0.26} />
         </div>
       </div>
 
