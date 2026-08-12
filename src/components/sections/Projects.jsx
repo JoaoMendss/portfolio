@@ -546,7 +546,7 @@ function ForjaCLICard({ project, onClick, isEn, delay }) {
             <Prompt cmd="npx create-forja-app" />
             <div className="space-y-1.5">
               <p className="text-zinc-400 text-[11px]">
-                ? {isEn ? 'Project name' : 'Nome do projeto'}: <span className="text-emerald-400">meu-projeto</span>
+                ? {isEn ? 'Project name' : 'Nome do projeto'}: <span className="text-emerald-400">forja-cli</span>
               </p>
               <p className="text-zinc-400 text-[11px]">? Template:</p>
               {templates.map((t) => (
