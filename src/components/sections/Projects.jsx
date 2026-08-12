@@ -90,20 +90,6 @@ const PROJECTS = [
     how_pt: 'Integração com ExchangeRate API para taxas atualizadas a cada chamada. Cache local via localStorage para reduzir requisições repetidas. JavaScript vanilla com fetch API e manipulação de DOM sem framework.',
     how_en: 'Integrates with ExchangeRate API for up-to-date rates on each call. Local cache via localStorage to reduce repeated requests. Vanilla JavaScript with fetch API and framework-free DOM manipulation.',
   },
-  {
-    slug: 'ui-lab',
-    name: 'UI Lab',
-    type: 'frontend',
-    status: 'ongoing',
-    live: null,
-    tech: ['CSS3', 'HTML5', 'JavaScript', 'React', 'Framer Motion'],
-    desc_pt: 'Experimentos de UI — interfaces complexas, animações e padrões avançados de design.',
-    desc_en: 'UI experiments — complex interfaces, animations, and advanced design patterns.',
-    about_pt: 'Laboratório pessoal de experimentos de UI — componentes incomuns, microinterações e desafios de CSS que vão além do convencional. Cada componente é um exercício de criatividade e técnica.',
-    about_en: 'Personal UI experiment lab — unusual components, micro-interactions, and CSS challenges that go beyond the conventional. Each component is an exercise in creativity and technique.',
-    how_pt: 'Componentes isolados em React com foco em técnicas avançadas: CSS custom properties, clip-path, SVG animations e Framer Motion. Documentados e componentizados para eventual open-source. 42 componentes publicados até agora.',
-    how_en: 'Isolated React components focused on advanced techniques: CSS custom properties, clip-path, SVG animations, and Framer Motion. Documented and componentized for eventual open-source. 42 components published so far.',
-  },
 ];
 
 const statusColor = {
@@ -306,7 +292,7 @@ function PodiumArenaCard({ project, onClick, isEn, delay }) {
     : [['[1]', 'Beach Tennis', true], ['[2]', 'Vôlei', true], ['[3]', 'Futevolei', false]];
 
   return (
-    <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }} className="lg:col-span-2">
+    <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }} className="md:col-span-2 lg:col-span-2">
       <Terminal path="~/projects/podium-arena" onClick={onClick} className="h-full">
         <Prompt cmd="curl /api/courts/status" />
         <div className="space-y-1 mt-1">
@@ -515,41 +501,6 @@ function CurrencyCard({ project, onClick, delay }) {
 }
 
 
-function UILabCard({ project, onClick, isEn, delay }) {
-  const entries = isEn
-    ? [['11:23:01','AnimatedCard.jsx','deployed'],['11:24:18','MorphButton.jsx','deployed'],['11:25:44','ParallaxHero.jsx','deployed'],['11:26:09','GlitchText.jsx','in progress']]
-    : [['11:23:01','AnimatedCard.jsx','publicado'],['11:24:18','MorphButton.jsx','publicado'],['11:25:44','ParallaxHero.jsx','publicado'],['11:26:09','GlitchText.jsx','em progresso']];
-
-  return (
-    <motion.div {...fadeUp(delay)} whileHover={{ y: -3, transition: { duration: 0.18 } }} className="md:col-span-2 lg:col-span-3">
-      <Terminal path="~/projects/ui-lab" onClick={onClick} className="h-full">
-        <div className="grid md:grid-cols-2 gap-x-10 gap-y-2.5">
-          <div className="space-y-2.5">
-            <Prompt cmd="ls components/ | wc -l" />
-            <p className="text-zinc-100 text-lg font-bold">42</p>
-            <Prompt cmd="git status" />
-            <p className="text-zinc-500">On branch <span className="text-emerald-400">main</span></p>
-            <p><span className="text-zinc-600">modified: </span><span className="text-yellow-400">3 files</span></p>
-            <p className="text-zinc-600">&gt; <span className="text-zinc-500">frontend</span> · <span className="text-blue-400">ongoing</span></p>
-          </div>
-          <div className="space-y-2.5">
-            <Prompt cmd="tail -f deploy.log" />
-            <div className="space-y-1">
-              {entries.map(([time, file, status]) => (
-                <p key={file} className="flex gap-3">
-                  <span className="text-zinc-700 flex-shrink-0">[{time}]</span>
-                  <span className="text-zinc-400 flex-shrink-0">{file}</span>
-                  <span className={`ml-auto flex-shrink-0 ${status.includes('progress') || status.includes('progresso') ? 'text-yellow-400' : 'text-emerald-400'}`}>— {status}</span>
-                </p>
-              ))}
-            </div>
-            <LiveLink href={project.live} isEn={isEn} />
-          </div>
-        </div>
-      </Terminal>
-    </motion.div>
-  );
-}
 
 /* ─── Section ────────────────────────────────────────────── */
 export default function Projects() {
@@ -579,7 +530,6 @@ export default function Projects() {
           <SmartFinanceCard project={p('smart-finance')}       onClick={() => setSelected(p('smart-finance'))}      isEn={isEn}  delay={0.14} />
           <DevBurgerCard   project={p('devburger')}           onClick={() => setSelected(p('devburger'))}           isEn={isEn}  delay={0.18} />
           <CurrencyCard    project={p('currency-converter')}  onClick={() => setSelected(p('currency-converter'))}               delay={0.22} />
-<UILabCard       project={p('ui-lab')}              onClick={() => setSelected(p('ui-lab'))}              isEn={isEn}  delay={0.30} />
         </div>
       </div>
 
