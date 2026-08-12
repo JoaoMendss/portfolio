@@ -29,8 +29,8 @@ export default function ContactModal({ open, onClose }) {
     {
       icon: Linkedin,
       label: t('modal.linkedin_label'),
-      value: 'linkedin.com/in/joaolcmendes',
-      href: 'https://www.linkedin.com/in/joaolcmendes/',
+      value: 'linkedin.com/in/joaomendss',
+      href: 'https://www.linkedin.com/in/joaomendss/',
       external: true,
     },
   ];
