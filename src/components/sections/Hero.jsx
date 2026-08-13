@@ -7,6 +7,9 @@ import ContactModal from '../ui/ContactModal';
 
 const LightRays = lazy(() => import('../ui/LightRays'));
 
+const isLowEndDevice = () =>
+  typeof navigator !== 'undefined' && navigator.hardwareConcurrency <= 4;
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
@@ -22,30 +25,32 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden">
-      {/* Layer 0: WebGL light rays — lazy loaded */}
-      <div className="absolute inset-0">
-        <Suspense fallback={null}>
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#3b82f6"
-            raysSpeed={0.6}
-            lightSpread={0.14}
-            rayLength={1.6}
-            followMouse={true}
-            mouseInfluence={0.12}
-            noiseAmount={0.02}
-            distortion={0.02}
-            fadeDistance={0.85}
-          />
-        </Suspense>
-      </div>
+      {/* Layer 0: WebGL light rays — lazy loaded, disabled on low-end devices */}
+      {!isLowEndDevice() && (
+        <div className="absolute inset-0">
+          <Suspense fallback={null}>
+            <LightRays
+              raysOrigin="top-center"
+              raysColor="#3b82f6"
+              raysSpeed={0.6}
+              lightSpread={0.14}
+              rayLength={1.6}
+              followMouse={true}
+              mouseInfluence={0.12}
+              noiseAmount={0.02}
+              distortion={0.02}
+              fadeDistance={0.85}
+            />
+          </Suspense>
+        </div>
+      )}
 
       {/* Layer 1: ParticleText cobrindo a hero inteira */}
       <div className="absolute inset-0 z-10">
         <ParticleText
           text={t('hero.name')}
           particleSize={2}
-          density={3}
+          density={4}
           color={theme === 'dark' ? '#e4e4e7' : '#18181b'}
           highlightColor="#3b82f6"
           scatter={200}
@@ -53,12 +58,12 @@ export default function Hero() {
           stagger={380}
           pointerRepel={50}
           repelRadius={130}
-          idleDrift={0.6}
+          idleDrift={0.3}
           trigger="mount"
           fontSize="clamp(3.5rem, 11vw, 8rem)"
           fontWeight={800}
           fontFamily="inherit"
-          glow
+          glow={false}
         />
       </div>
 
